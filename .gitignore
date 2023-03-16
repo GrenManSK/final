@@ -2,3 +2,5 @@
 .history/
 patch.py
 final/__pycache__/
+final.egg-info/
+build/
