@@ -10,6 +10,14 @@ import logging
 
 
 def DownloadMusic(music_name):
+    """
+    The DownloadMusic function takes in a string of the name of the song you want to download.
+    It then searches for that song on YouTube and downloads it as an mp3 file into your assets folder.
+    The function returns a string containing the name of the downloaded file.
+    
+    :param music_name: Search for the music in youtube
+    :return: The name of the downloaded music
+    """
     query_string = urllib.parse.urlencode({"search_query": music_name})
     formatUrl = urllib.request.urlopen(
         "https://www.youtube.com/results?" + query_string)
@@ -29,6 +37,14 @@ def DownloadMusic(music_name):
     print(concatMusic1['content'])
 
     def run(clip2):
+        """
+        The run function takes a YouTube link as an argument and downloads the highest resolution video file.
+        It then extracts the audio from that video file, saves it to a new mp3 file, and deletes the original video.
+        The function returns the name of this new mp3 file.
+        
+        :param clip2: Pass the youtube link to the run function
+        :return: The name of the song
+        """
         out_file = YouTube(
             str(clip2)).streams.get_highest_resolution().download()
         base, ext = os.path.splitext(out_file)

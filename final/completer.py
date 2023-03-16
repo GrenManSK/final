@@ -8,9 +8,17 @@ class SimpleCompleter(object):
         return
 
     def complete(self, text, state):
+        """
+        The complete function is called as complete(text, state), for state in 0, 1, 2, ...
+        until it returns a non-string value. It should return the next possible completion starting with 'text'.
+        
+        :param self: Represent the instance of the class
+        :param text: Filter the list of options
+        :param state: Keep track of the index in the matches list
+        :return: The state'th item from the match list, if we have that many
+        """
         response = None
         if state == 0:
-            # This is the first time for this text, so build a match list.
             if text:
                 self.matches = [s
                                 for s in self.options

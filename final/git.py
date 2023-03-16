@@ -42,6 +42,12 @@ class download:
         self.name = 'new.zip'
 
     def download(self):
+        """
+        The download function downloads the zip file from the url, extracts it and returns a list of all files in the directory
+        
+        :param self: Access the class attributes and methods
+        :return: The directory of the extracted files
+        """
         directory_before = os.listdir()
         download_file(self.url, self.name)
         with zipfile.ZipFile(self.name, mode='r') as zip:
@@ -63,7 +69,14 @@ class download:
         return self
 
     def extract(self, destionation = './'):
-
+        """
+        The extract function takes a directory as an argument and moves all files from the source directory to the target directory.
+        It then deletes the source directory.
+        
+        :param self: Refer to the object itself
+        :param destionation: Specify the location where the files will be extracted to
+        :return: The object itself
+        """
         source_dir = f'{self.directory}/'
         target_dir = destionation
         file_names = os.listdir(source_dir)
@@ -77,6 +90,12 @@ class download:
         return self
 
     def remove_info(self):
+        """
+        The remove_info function removes the README.md and requirements.txt files from the target directory.
+        
+        :param self: Represent the instance of the class
+        :return: Nothing
+        """
         file_names = os.listdir(self.target_dir)
         for file_name in file_names:
             if file_name in ["README.md", 'requirements.txt']:
