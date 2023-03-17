@@ -5,6 +5,7 @@ import os
 from time import sleep
 from datetime import datetime
 from threading import Thread
+from random import randint
 datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 
 
@@ -30,6 +31,12 @@ def get_time() -> str:
     return datetime.now().strftime("%H-%M-%S")
 
 
+def get_id(long: int= 10) -> int:
+    id = ''
+    for i in range(long):
+        id += str(randint(0,9))
+    return id
+
 class installing_carousel:
     def __init__(self, package: str, comment: str = 'Installing', bar: bool = False, move_by_command: bool = False):
         self.package = package
@@ -37,6 +44,7 @@ class installing_carousel:
         self.bar = bar
         self.move_by_command = move_by_command
         self._move = 0
+        self.id = get_id()
 
     def start(self):
         """
@@ -47,6 +55,33 @@ class installing_carousel:
         """
         
         Thread(target=self.init).start()
+        
+    def pause(self):
+        """
+        The pause function is used to pause the installation of a package.
+        
+        :param self: Represent the instance of the class
+        :return: Nothing, it just creates a file
+        """
+        open(f"INSTALL_PAUSE{self.id}", 'x')
+        
+    def unpause(self):
+        open(f"INSTALL_UNPAUSE{self.id}", 'x')
+
+    def stop(self, mode='s'):
+        """
+        The stop function is called when the user wants to stop the installation.
+    
+        :param self: Represent the instance of the class
+        :param mode: Determine what file is created
+        :return: The name of the file that is created
+        """
+        if mode == 's':
+            open(f"INSTALL_DONE{self.id}", 'x')
+        if mode == 'e':
+            open(f"INSTALL_ERROR{self.id}", 'x')
+        if mode == 'ali':
+            open(f"INSTALL_ALINST{self.id}", 'x')
 
     def move(self):
         self._move += 1
@@ -69,22 +104,24 @@ class installing_carousel:
         number = 0
         char = ['|', '/', '-', '\\']
         while True:
-            if os.path.isfile('INSTALL_DONE'):
+            if os.path.isfile(f'INSTALL_DONE{self.id}'):
                 break
-            if os.path.isfile('INSTALL_ERROR'):
+            if os.path.isfile(f'INSTALL_ERROR{self.id}'):
                 error = True
                 break
-            if os.path.isfile('INSTALL_ALINST'):
+            if os.path.isfile(f'INSTALL_ALINST{self.id}'):
                 alinst = True
                 break
-            if os.path.isfile('INSTALL_PAUSE'):
+            if os.path.isfile(f'INSTALL_PAUSE{self.id}'):
                 if not self.bar:
                     print('                                            ', end='\r')
                 if self.bar:
                     tqdm.write(
                         '                                            ', end='\r')
-                sleep(0.4)
-                os.remove('INSTALL_PAUSE')
+                os.remove(f'INSTALL_PAUSE{self.id}')
+                while not os.path.isfile(f'INSTALL_UNPAUSE{self.id}'):
+                    sleep(0.1)
+                os.remove(f'INSTALL_UNPAUSE{self.id}')
             if not self.bar:
                 print(
                     f'{self.comment} {self.package} {char[number]}               ', end='\r')
@@ -116,14 +153,14 @@ class installing_carousel:
             if self.bar:
                 tqdm.write(f'{self.comment} {self.package} DONE             ')
         try:
-            os.remove('INSTALL_DONE')
+            os.remove(f'INSTALL_DONE{self.id}')
         except Exception:
             pass
         try:
-            os.remove('INSTALL_ERROR')
+            os.remove(f'INSTALL_ERROR{self.id}')
         except Exception:
             pass
         try:
-            os.remove('INSTALL_ALINST')
+            os.remove(f'INSTALL_ALINST{self.id}')
         except Exception:
             pass
