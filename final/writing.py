@@ -31,11 +31,12 @@ def get_time() -> str:
     return datetime.now().strftime("%H-%M-%S")
 
 
-def get_id(long: int= 10) -> int:
+def get_id(long: int = 10) -> int:
     id = ''
     for i in range(long):
-        id += str(randint(0,9))
+        id += str(randint(0, 9))
     return id
+
 
 class installing_carousel:
     def __init__(self, package: str, comment: str = 'Installing', bar: bool = False, move_by_command: bool = False):
@@ -49,29 +50,29 @@ class installing_carousel:
     def start(self):
         """
         The start function is the main function of the class. It starts a thread that runs init()
-        
+
         :param self: Represent the instance of the class
         :return: Nothing, so the return statement is never reached
         """
-        
+
         Thread(target=self.init).start()
-        
+
     def pause(self):
         """
         The pause function is used to pause the installation of a package.
-        
+
         :param self: Represent the instance of the class
         :return: Nothing, it just creates a file
         """
         open(f"INSTALL_PAUSE{self.id}", 'x')
-        
+
     def unpause(self):
         open(f"INSTALL_UNPAUSE{self.id}", 'x')
 
     def stop(self, mode='s'):
         """
         The stop function is called when the user wants to stop the installation.
-    
+
         :param self: Represent the instance of the class
         :param mode: Determine what file is created
         :return: The name of the file that is created
@@ -94,11 +95,11 @@ class installing_carousel:
         it will print DONE after the package name and if it finds an INSTALL_ERROR file, 
         it will print ERROR after the package name. If it finds an INSTALL_ALINST file, 
         it will print ALREADY INSTALLED after the package name.
-        
+
         :param self: Represent the instance of the class
         :return: Nothing, so the return statement is not needed
         """
-        
+
         error = False
         alinst = False
         number = 0

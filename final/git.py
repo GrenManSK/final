@@ -44,7 +44,7 @@ class download:
     def download(self):
         """
         The download function downloads the zip file from the url, extracts it and returns a list of all files in the directory
-        
+
         :param self: Access the class attributes and methods
         :return: The directory of the extracted files
         """
@@ -68,11 +68,11 @@ class download:
         print(self.directory)
         return self
 
-    def extract(self, destionation = './'):
+    def extract(self, destionation='./'):
         """
         The extract function takes a directory as an argument and moves all files from the source directory to the target directory.
         It then deletes the source directory.
-        
+
         :param self: Refer to the object itself
         :param destionation: Specify the location where the files will be extracted to
         :return: The object itself
@@ -92,7 +92,7 @@ class download:
     def remove_info(self):
         """
         The remove_info function removes the README.md and requirements.txt files from the target directory.
-        
+
         :param self: Represent the instance of the class
         :return: Nothing
         """

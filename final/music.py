@@ -104,7 +104,7 @@ class Channel:
         :doc-author: Trelent
         """
         mixer.Channel(self.channel).play(mixer.Sound(path),
-                                    loops=self.loops, fade_ms=self.fade)
+                                         loops=self.loops, fade_ms=self.fade)
 
     def pause(self) -> None:
         """

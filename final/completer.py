@@ -11,7 +11,7 @@ class SimpleCompleter(object):
         """
         The complete function is called as complete(text, state), for state in 0, 1, 2, ...
         until it returns a non-string value. It should return the next possible completion starting with 'text'.
-        
+
         :param self: Represent the instance of the class
         :param text: Filter the list of options
         :param state: Keep track of the index in the matches list

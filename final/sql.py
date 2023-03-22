@@ -7,6 +7,7 @@ from tqdm import tqdm
 import os
 from random import uniform
 
+
 class SQLServer:
     def __init__(self, host: str, port: int, user=None, passwd=None, database=None, log: bool = False):
         self.host = host
@@ -19,11 +20,11 @@ class SQLServer:
     def connect(self):
         """
         The connect function connects to the database and returns a connection object.
-        
+
         :param self: Reference the class object
         :return: The connection object
         """
-        
+
         if self.log:
             print('CONNECTING ...', end='\r')
         if self.user != None:
@@ -52,19 +53,19 @@ class SQLServer:
             print('APPOINTING CURSOR DONE')
         return self.db
 
-    def execute(self, command: str, log = None, info = True):
+    def execute(self, command: str, log=None, info=True):
         """
         The execute function executes a command and prints out the result.
         It also returns the result as a pandas dataframe.
-        
+
         :param self: Refer to the object instance
         :param command: str: Pass the sql command to be executed
         :param log: Enable logging
         :param info: Print out the time it took to execute the command
         :return: A pandas dataframe
         """
-        while os.path.exists('C:\\Users\\richard\\Desktop\\SQL\\RUNNING'):
-            time.sleep(uniform(0.5,1.5))
+        while os.path.exists('RUNNING'):
+            time.sleep(uniform(0.5, 1.5))
         try:
             # deepcode ignore MissingClose: <create file>
             open('RUNNING', 'x')
@@ -80,7 +81,7 @@ class SQLServer:
         try:
             self.mycursor.execute(command)
         except mysql.connector.errors.ProgrammingError:
-            os.remove('C:\\Users\\richard\\Desktop\\SQL\\RUNNING')
+            os.remove('RUNNING')
             return None
         end = time.time()
         commandtime = end - start
@@ -95,12 +96,12 @@ class SQLServer:
         if self.log or info:
             print(f'DONE in {commandtime} seconds')
             print(f'Printing DONE in {endtime} seconds')
-                    
+
         self.db.commit()
-        os.remove('C:\\Users\\richard\\Desktop\\SQL\\RUNNING')
+        os.remove('RUNNING')
         return data
-    
-    @staticmethod    
+
+    @staticmethod
     def to_str(thing, mode: int = 0) -> str:
         """
         The to_str function takes a list of lists and converts it into a string.

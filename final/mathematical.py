@@ -50,13 +50,13 @@ class list:
         """
         The divide function divides the first item in a list by all other items in that list.
             If there are no items, it returns 0.
-            
+
             Parameters:
                 self (object): The object being passed to the function.
-                
+
             Returns: 
                 result (int or float): The result of dividing all numbers together.
-        
+
         :param self: Refer to the object itself
         :return: The result of the division
         """
