@@ -1,6 +1,7 @@
 """Math functions"""
 
 from math import ceil
+from random import randint
 
 
 class list:
@@ -87,3 +88,10 @@ class list:
         if self.obj_ret:
             return self
         return result
+
+
+def get_id(long: int = 10) -> int:
+    id = ''
+    for i in range(long):
+        id += str(randint(0, 9))
+    return id

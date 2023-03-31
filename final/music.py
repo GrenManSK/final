@@ -25,8 +25,7 @@ class music:
         :param path: str: Specify the path to the music file
         :return: None
         """
-        mixer.music.load(path)
-        return None
+        return mixer.music.load(path)
 
     def play(self, loops: int = -1, fade: int = 0, start: float = 0.0) -> None:
         """
@@ -36,7 +35,7 @@ class music:
         :param loops: int: Specify how many times the sound should be played
         :return: None
         """
-        mixer.music.play(loops=loops, fade_ms=fade, start=start)
+        return mixer.music.play(loops=loops, fade_ms=fade, start=start)
 
     def lplay(self, path: str, loops: int = -1, fade: int = 0, start: float = 0.0) -> None:
         """
@@ -58,7 +57,7 @@ class music:
         :return: None
         """
         mixer.music.load(path)
-        mixer.music.play(loops=loops, fade_ms=fade, start=start)
+        return mixer.music.play(loops=loops, fade_ms=fade, start=start)
 
     @staticmethod
     def pause() -> None:
@@ -67,7 +66,7 @@ class music:
 
         :return: None
         """
-        mixer.music.pause()
+        return mixer.music.pause()
 
     @staticmethod
     def unpause() -> None:
@@ -76,7 +75,7 @@ class music:
 
         :return: None
         """
-        mixer.music.unpause()
+        return mixer.music.unpause()
 
     @staticmethod
     def stop() -> None:
@@ -85,7 +84,7 @@ class music:
 
         :return: None
         """
-        mixer.music.stop()
+        return mixer.music.stop()
 
 
 class Channel:
@@ -103,7 +102,7 @@ class Channel:
         :return: None
         :doc-author: Trelent
         """
-        mixer.Channel(self.channel).play(mixer.Sound(path),
+        return mixer.Channel(self.channel).play(mixer.Sound(path),
                                          loops=self.loops, fade_ms=self.fade)
 
     def pause(self) -> None:
@@ -113,7 +112,7 @@ class Channel:
         :return: None
         :doc-author: Trelent
         """
-        mixer.Channel(self.channel).pause()
+        return mixer.Channel(self.channel).pause()
 
     def unpause(self) -> None:
         """
@@ -121,7 +120,7 @@ class Channel:
         :param self: Access the variables and methods of the class
         :return: None
         """
-        mixer.Channel(self.channel).unpause()
+        return mixer.Channel(self.channel).unpause()
 
     def stop(self) -> None:
         """
@@ -129,4 +128,4 @@ class Channel:
         :param self: Refer to the object itself
         :return: None
         """
-        mixer.Channel(self.channel).stop()
+        return mixer.Channel(self.channel).stop()

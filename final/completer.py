@@ -37,3 +37,13 @@ class SimpleCompleter(object):
         logging.debug('complete(%s, %s) => %s',
                       repr(text), state, repr(response))
         return response
+
+
+# ----------------------------------------------------------------
+# 
+# Example usage
+#
+# import readline
+# readline.set_completer(
+#     SimpleCompleter(['example1', 'example2']).complete)
+# readline.parse_and_bind('tab: complete')

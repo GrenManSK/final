@@ -5,7 +5,9 @@ import os
 from time import sleep
 from datetime import datetime
 from threading import Thread
-from random import randint
+import curses
+from final.mathematical import get_id
+import sys
 datelog: str = datetime.now().strftime("%y-%m-%d-%H-%M-%S")
 
 
@@ -31,21 +33,20 @@ def get_time() -> str:
     return datetime.now().strftime("%H-%M-%S")
 
 
-def get_id(long: int = 10) -> int:
-    id = ''
-    for i in range(long):
-        id += str(randint(0, 9))
-    return id
-
-
 class installing_carousel:
-    def __init__(self, package: str, comment: str = 'Installing', bar: bool = False, move_by_command: bool = False):
+    def __init__(self, package: str, comment: str = 'Installing', bar: bool = False, move_by_command: bool = False, use_curses: bool = False, curses_y: int = 0, curses_x: int = 0, curses_obj = None):
         self.package = package
         self.comment = comment
         self.bar = bar
         self.move_by_command = move_by_command
         self._move = 0
         self.id = get_id()
+        self.use_curses = use_curses
+        self.curses_y = curses_y
+        self.curses_x = curses_x
+        self.curses_obj = curses_obj
+        if self.use_curses and self.curses_obj is None:
+            raise curses.error('curses object is not specified; curses_obj')
 
     def start(self):
         """
@@ -99,7 +100,6 @@ class installing_carousel:
         :param self: Represent the instance of the class
         :return: Nothing, so the return statement is not needed
         """
-
         error = False
         alinst = False
         number = 0
@@ -115,20 +115,31 @@ class installing_carousel:
                 break
             if os.path.isfile(f'INSTALL_PAUSE{self.id}'):
                 if not self.bar:
-                    print('                                            ', end='\r')
+                    if not self.use_curses:
+                        print(
+                            '                                            ', end='\r')
+                    else:
+                        self.curses_obj.addstr(
+                            self.curses_y, self.curses_x, '                                            ')
+                        self.curses_obj.refresh()
                 if self.bar:
                     tqdm.write(
-                        '                                            ', end='\r')
+                        '                                            ')
                 os.remove(f'INSTALL_PAUSE{self.id}')
                 while not os.path.isfile(f'INSTALL_UNPAUSE{self.id}'):
                     sleep(0.1)
                 os.remove(f'INSTALL_UNPAUSE{self.id}')
             if not self.bar:
-                print(
-                    f'{self.comment} {self.package} {char[number]}               ', end='\r')
+                if not self.use_curses:
+                    print(
+                        f'{self.comment} {self.package} {char[number]}               ', end='\r')
+                else:
+                    self.curses_obj.addstr(
+                        self.curses_y, self.curses_x, f'{self.comment} {self.package} {char[number]}               ')
+                    self.curses_obj.refresh()
             if self.bar:
                 tqdm.write(
-                    f'{self.comment} {self.package} {char[number]}               ', end='\r')
+                    f'{self.comment} {self.package} {char[number]}               ')
             if not self.move_by_command or self._move != 0 and self.move_by_command:
                 number += 1
                 if self.move_by_command:
@@ -138,19 +149,34 @@ class installing_carousel:
             sleep(0.1)
         if error:
             if not self.bar:
-                print(f'{self.comment} {self.package} ERROR             ')
+                if not self.use_curses:
+                    print(f'{self.comment} {self.package} ERROR             ')
+                else:
+                    self.curses_obj.addstr(
+                        self.curses_y, self.curses_x, f'{self.comment} {self.package} ERROR             ')
+                    self.curses_obj.refresh()
             if self.bar:
                 tqdm.write(f'{self.comment} {self.package} ERROR             ')
         elif alinst:
             if not self.bar:
-                print(
-                    f'{self.comment} {self.package} ALREADY INSTALLED             ')
+                if not self.use_curses:
+                    print(
+                        f'{self.comment} {self.package} ALREADY INSTALLED             ')
+                else:
+                    self.curses_obj.addstr(
+                        self.curses_y, self.curses_x, f'{self.comment} {self.package} ALREADY INSTALLED             ')
+                    self.curses_obj.refresh()
             if self.bar:
                 tqdm.write(
                     f'{self.comment} {self.package} ALREADY INSTALLED             ')
         else:
             if not self.bar:
-                print(f'{self.comment} {self.package} DONE             ')
+                if not self.use_curses:
+                    print(f'{self.comment} {self.package} DONE             ')
+                else:
+                    self.curses_obj.addstr(
+                        self.curses_y, self.curses_x, f'{self.comment} {self.package} DONE             ')
+                    self.curses_obj.refresh()
             if self.bar:
                 tqdm.write(f'{self.comment} {self.package} DONE             ')
         try:
