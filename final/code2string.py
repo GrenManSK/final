@@ -38,8 +38,17 @@ class c2s:
         name += str(temp)
         return name
 
-    def start(self):
+    def start(self) -> str:
+        full = ""
         with open(self.code_file, 'r') as code:
-            with open(self.string_file, 'w') as file:
+            if self.string_file is not None or not self.string_file in ['']:
+                with open(self.string_file, 'w') as file:
+                    for i in tqdm(fr := code.readlines()):
+                        oneline = c2s.to_str(i)
+                        file.write(oneline)
+                        full += oneline
+            else:
                 for i in tqdm(fr := code.readlines()):
-                    file.write(c2s.to_str(i))
+                    oneline = c2s.to_str(i)
+                    full += oneline
+        return full

@@ -9,7 +9,7 @@ from moviepy.editor import *
 import logging
 
 
-def DownloadMusic(music_name):
+def DownloadMusic(music_name, directory):
     """
     The DownloadMusic function takes in a string of the name of the song you want to download.
     It then searches for that song on YouTube and downloads it as an mp3 file into your assets folder.
@@ -57,9 +57,9 @@ def DownloadMusic(music_name):
         base.replace("\"", "")
         new_file = base + '.mp3'
         print(os.path.join(out_file))
-        print(os.path.join('assets\\' + new_file))
+        print(os.path.join(directory + '\\' + new_file))
         video = VideoFileClip(os.path.join(out_file))
-        video.audio.write_audiofile(os.path.join('assets\\' + new_file))
+        video.audio.write_audiofile(os.path.join(directory + '\\' + new_file))
         video.close()
         os.remove(out_file)
         print('Done\n')

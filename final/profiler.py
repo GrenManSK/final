@@ -30,6 +30,7 @@ def Profiler(target, args: list = (), time_info: bool = False, output_file: bool
     stats.sort_stats(pstats.SortKey.TIME)
     if output_file:
         stats.dump_stats(filename='PROFILING.prof')
+        print('Use \'snakeviz PROFILING.prof\' to open file')
     if time_info:
         print(f"Time it spend to process: {str(_end - _start)}s")
     if _return == 'r':
