@@ -58,6 +58,12 @@ On line 411 remove all content of the line and change it to 'transform_plan_raw 
 ## git.py
 
 - Same as `git clone`
+- 'delete' function DOES NOT delete .git folder
+
+## git_legacy.py
+
+- Older version of git.py
+- Complete change of algorithm
 
 ## mathematical.py
 

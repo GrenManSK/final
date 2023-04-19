@@ -10,13 +10,13 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='final',
-    version='1.0.6',
+    version='1.0.7',
     description='final',
     long_description=long_description,
 
     long_description_content_type='text/markdown',
     author='GrenManSK',
     install_requires=['glob2', 'tk', 'mal-api', 'urllib3', 'Pillow', 'PyAutoGUI', 'show-in-file-manager', 'tqdm', 'python-vlc', 'pygame', 'bs4', 'snakeviz', 'windows-curses',
-                      'pytube', 'moviepy', 'filesplit', 'CProfileV', 'PyGetWindow', 'mysql-connector-python', 'thread6', 'bing-image-urls', 'setuptools'],
+                      'pytube', 'moviepy', 'filesplit', 'CProfileV', 'PyGetWindow', 'mysql-connector-python', 'thread6', 'bing-image-urls', 'setuptools', 'anitopy'],
     packages=find_packages(exclude=('tests*', 'testing*')),
 )

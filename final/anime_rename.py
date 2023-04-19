@@ -3,19 +3,8 @@ import glob
 import re
 import os
 import mal
+import anitopy
 
-
-def getEpisode(filename):
-    """
-    The getEpisode function searches for a string that matches the regular expression r'\b(?:e(?:p(?:isode)?)?|0x|S\d\d?
-        E)?\s*?(\d{2,3})\b'. If it finds a match, it returns the first group of digits as an integer. Otherwise, it returns None.
-    :param filename: Find the episode number in the filename
-    :return: The episode number of the file
-    """
-    match = re.search(
-        r'''\b(?:e(?:p(?:isode)?)?|0x|S\d\dE)?\s*?(\d{2,3})\b''', filename)
-    if match:
-        return match.group(1)
 
 
 class rename:
@@ -32,9 +21,7 @@ class rename:
         output_folder_names = []
         output_names = []
         for item in (input_folder := glob.glob(self.input + '/*.*')):
-            item = re.sub("\(.*?\)", "", item)
-            item = re.sub("\[.*?\]", "", item)
-            item = re.sub("\{.*?\}", "", item)
+            anime_name = anitopy.parse(item.split('\\')[-1])['anime_title']
             output_folder.append(item)
             output_folder_names.append(os.path.split(item)[-1])
         print(output_folder)
@@ -43,18 +30,35 @@ class rename:
         folder_name_parent = os.path.split(input_folder[0])[0]
         print(folder_name)
         print(folder_name_parent)
-        anime_name = mal.AnimeSearch(folder_name).results[0].title
         print(anime_name)
         extensions = []
         for item in input_folder:
-            extensions.append(item.split('.')[-1])
-        for item in output_folder_names:
-            print(episode_name := getEpisode(item))
-            output_names.append([anime_name, episode_name])
+            extensions.append(anitopy.parse(item)['file_extension'])
+        resolution = []
+        for item in input_folder:
+            try:
+                resolution.append(anitopy.parse(item)['video_resolution'])
+            except KeyError:
+                resolution.append('')
+        season = []
+        for item in input_folder:
+            try:
+                season.append(anitopy.parse(item)['anime_season'])
+            except KeyError:
+                season.append('1')
+        anime_title = []
+        for item in input_folder:
+            try:
+                anime_title.append(' - ' + anitopy.parse(item)['episode_title'])
+            except KeyError:
+                anime_title.append('')
+        for times, item in enumerate(output_folder_names):
+            print(episode_name := anitopy.parse(item)['episode_number'])
+            output_names.append([anime_name, episode_name, f" (Season {season[times]})"])
         output_final = []
         for times, item in enumerate(output_names):
-            output_final.append(folder_name_parent + '/' + folder_name +
-                                ' - ' + str(item[1]) + '.' + extensions[times])
+            output_final.append(folder_name_parent + '/' + anime_name + str(item[2]) +
+                                ' - ' + str(item[1]) + anime_title[times] +  '.' + extensions[times])
         print(output_final)
         for number in range(0, len(output_final)):
             print(input_folder[number] + ' => ' + output_final[number])
