@@ -13,3 +13,6 @@
 # import final.sql
 # import final.unpack
 # import final.writing
+
+VERSION = '1.0.7'
+AUTHOR = 'GrenManSK'
