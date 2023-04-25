@@ -5,5 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [label="final.git_legacy.download",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/df5/classfinal_1_1git__legacy_1_1download.html",tooltip=" "];
+  Node0 [label="final.mathematical.list",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d8/d02/classfinal_1_1mathematical_1_1list.html",tooltip=" "];
 }

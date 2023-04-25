@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['target_5fdir_0',['target_dir',['../d2/df5/classfinal_1_1git__legacy_1_1download.html#a17a5a5e00b123c4e7a81be38c3e5cb06',1,'final::git_legacy::download']]]
+  ['version_0',['VERSION',['../d1/d32/namespacefinal.html#a63a4218a150be9c2c51fc00ced62fc0a',1,'final']]]
 ];

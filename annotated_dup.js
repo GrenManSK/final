@@ -13,9 +13,6 @@ var annotated_dup =
       [ "git", "de/d88/namespacefinal_1_1git.html", [
         [ "download", "db/d2d/classfinal_1_1git_1_1download.html", "db/d2d/classfinal_1_1git_1_1download" ]
       ] ],
-      [ "git_legacy", "d7/d0c/namespacefinal_1_1git__legacy.html", [
-        [ "download", "d2/df5/classfinal_1_1git__legacy_1_1download.html", "d2/df5/classfinal_1_1git__legacy_1_1download" ]
-      ] ],
       [ "mathematical", "d9/da2/namespacefinal_1_1mathematical.html", [
         [ "list", "d8/d02/classfinal_1_1mathematical_1_1list.html", "d8/d02/classfinal_1_1mathematical_1_1list" ]
       ] ],

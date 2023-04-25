@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">final<span id="projectnumber">&#160;1.0.7</span>
+   <div id="projectname">final<span id="projectnumber">&#160;1.0.8</span>
    </div>
   </td>
  </tr>
@@ -101,8 +101,8 @@ $(document).ready(function(){initNavTree('db/d2d/classfinal_1_1git_1_1download.h
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac718bacefe604f37d8ded5021e204899"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d2d/classfinal_1_1git_1_1download.html#ac718bacefe604f37d8ded5021e204899">__init__</a> (self, str <a class="el" href="../../db/d2d/classfinal_1_1git_1_1download.html#a2882bd0dd0d141628881d9efbc0c55d0">url</a>)</td></tr>
 <tr class="separator:ac718bacefe604f37d8ded5021e204899"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5135b2394a2594a002b6918042c684b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d2d/classfinal_1_1git_1_1download.html#ad5135b2394a2594a002b6918042c684b">download</a> (self)</td></tr>
-<tr class="separator:ad5135b2394a2594a002b6918042c684b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dab02ca5b932963d764ab6db7dad730"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d2d/classfinal_1_1git_1_1download.html#a3dab02ca5b932963d764ab6db7dad730">download</a> (self, folder='')</td></tr>
+<tr class="separator:a3dab02ca5b932963d764ab6db7dad730"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ec68f2b227f022cf6d470b778496710"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d2d/classfinal_1_1git_1_1download.html#a7ec68f2b227f022cf6d470b778496710">remove_info</a> (self)</td></tr>
 <tr class="separator:a7ec68f2b227f022cf6d470b778496710"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6d37b79097af5a462b53983f7dccc55"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d2d/classfinal_1_1git_1_1download.html#ae6d37b79097af5a462b53983f7dccc55">install</a> (self)</td></tr>
@@ -157,8 +157,8 @@ Public Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ad5135b2394a2594a002b6918042c684b" name="ad5135b2394a2594a002b6918042c684b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5135b2394a2594a002b6918042c684b">&#9670;&#160;</a></span>download()</h2>
+<a id="a3dab02ca5b932963d764ab6db7dad730" name="a3dab02ca5b932963d764ab6db7dad730"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dab02ca5b932963d764ab6db7dad730">&#9670;&#160;</a></span>download()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,8 +167,18 @@ Public Attributes</h2></td></tr>
           <td class="memname">def final.git.download.download </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em></td><td>)</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>folder</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -178,26 +188,28 @@ Public Attributes</h2></td></tr>
 :return: The directory of the extracted files
 </pre> 
 <p class="definition">Definition at line <a class="el" href="../../db/d94/git_8py_source.html#l00012">12</a> of file <a class="el" href="../../db/d94/git_8py_source.html">git.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   12</span>    <span class="keyword">def </span>download(self):</div>
+<div class="fragment"><div class="line"><span class="lineno">   12</span>    <span class="keyword">def </span>download(self, folder=&#39;&#39;):</div>
 <div class="line"><span class="lineno">   13</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">   14</span><span class="stringliteral">        The download function downloads the zip file </span><span class="keyword">from</span> the url, extracts it <span class="keywordflow">and</span> returns a list of all files <span class="keywordflow">in</span> the directory</div>
 <div class="line"><span class="lineno">   15</span> </div>
 <div class="line"><span class="lineno">   16</span>        :param self: Access the <span class="keyword">class </span>attributes and methods</div>
 <div class="line"><span class="lineno">   17</span>        :<span class="keywordflow">return</span>: The directory of the extracted files</div>
 <div class="line"><span class="lineno">   18</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   19</span><span class="stringliteral">        directory_before = os.listdir()</span></div>
-<div class="line"><span class="lineno">   20</span><span class="stringliteral">        os.system(f&#39;git clone {self.url}&#39;</span>)</div>
-<div class="line"><span class="lineno">   21</span>        name = self.url.split(<span class="stringliteral">&#39;/&#39;</span>)[-1].split(<span class="stringliteral">&#39;.&#39;</span>)[0]</div>
-<div class="line"><span class="lineno">   22</span>        os.system(f<span class="stringliteral">&#39;cd {name}&#39;</span>)</div>
-<div class="line"><span class="lineno">   23</span>        directory_after = os.listdir()</div>
-<div class="line"><span class="lineno">   24</span>        self.directory = []</div>
-<div class="line"><span class="lineno">   25</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> directory_after:</div>
-<div class="line"><span class="lineno">   26</span>            <span class="keywordflow">if</span> i <span class="keywordflow">in</span> directory_before:</div>
-<div class="line"><span class="lineno">   27</span>                <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno">   28</span>            self.directory = i</div>
-<div class="line"><span class="lineno">   29</span>        print(self.directory)</div>
-<div class="line"><span class="lineno">   30</span>        <span class="keywordflow">return</span> self</div>
-<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   19</span><span class="stringliteral">        </span><span class="keywordflow">if</span> folder != <span class="stringliteral">&#39;&#39;</span>:</div>
+<div class="line"><span class="lineno">   20</span>            self.caller = folder</div>
+<div class="line"><span class="lineno">   21</span>        directory_before = os.listdir()</div>
+<div class="line"><span class="lineno">   22</span>        os.system(f<span class="stringliteral">&#39;git clone {self.url} {folder}&#39;</span>)</div>
+<div class="line"><span class="lineno">   23</span>        name = self.url.split(<span class="stringliteral">&#39;/&#39;</span>)[-1].split(<span class="stringliteral">&#39;.&#39;</span>)[0]</div>
+<div class="line"><span class="lineno">   24</span>        os.system(f<span class="stringliteral">&#39;cd {name}&#39;</span>)</div>
+<div class="line"><span class="lineno">   25</span>        directory_after = os.listdir()</div>
+<div class="line"><span class="lineno">   26</span>        self.directory = []</div>
+<div class="line"><span class="lineno">   27</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> directory_after:</div>
+<div class="line"><span class="lineno">   28</span>            <span class="keywordflow">if</span> i <span class="keywordflow">in</span> directory_before:</div>
+<div class="line"><span class="lineno">   29</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">   30</span>            self.directory = i</div>
+<div class="line"><span class="lineno">   31</span>        print(self.directory)</div>
+<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">return</span> self</div>
+<div class="line"><span class="lineno">   33</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -218,15 +230,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d94/git_8py_source.html#l00052">52</a> of file <a class="el" href="../../db/d94/git_8py_source.html">git.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   52</span>    <span class="keyword">def </span>delete(self):</div>
-<div class="line"><span class="lineno">   53</span>        <span class="keywordflow">for</span> file <span class="keywordflow">in</span> glob.glob(self.caller + <span class="stringliteral">&#39;\\*&#39;</span>, include_hidden=<span class="keyword">True</span>):</div>
-<div class="line"><span class="lineno">   54</span>            <span class="keywordflow">if</span> file.split(<span class="stringliteral">&#39;\\&#39;</span>)[-1] == <span class="stringliteral">&#39;.git&#39;</span>:</div>
-<div class="line"><span class="lineno">   55</span>                <span class="keywordflow">continue</span></div>
-<div class="line"><span class="lineno">   56</span>            <span class="keywordflow">if</span> os.path.isdir(file):</div>
-<div class="line"><span class="lineno">   57</span>                shutil.rmtree(file)</div>
-<div class="line"><span class="lineno">   58</span>            <span class="keywordflow">else</span>:</div>
-<div class="line"><span class="lineno">   59</span>                os.remove(file)</div>
+<p class="definition">Definition at line <a class="el" href="../../db/d94/git_8py_source.html#l00054">54</a> of file <a class="el" href="../../db/d94/git_8py_source.html">git.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>    <span class="keyword">def </span>delete(self):</div>
+<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">for</span> file <span class="keywordflow">in</span> glob.glob(self.caller + <span class="stringliteral">&#39;\\*&#39;</span>, include_hidden=<span class="keyword">True</span>):</div>
+<div class="line"><span class="lineno">   56</span>            <span class="keywordflow">if</span> file.split(<span class="stringliteral">&#39;\\&#39;</span>)[-1] == <span class="stringliteral">&#39;.git&#39;</span>:</div>
+<div class="line"><span class="lineno">   57</span>                <span class="keywordflow">continue</span></div>
+<div class="line"><span class="lineno">   58</span>            <span class="keywordflow">if</span> os.path.isdir(file):</div>
+<div class="line"><span class="lineno">   59</span>                shutil.rmtree(file)</div>
+<div class="line"><span class="lineno">   60</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><span class="lineno">   61</span>                os.remove(file)</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -246,11 +258,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d94/git_8py_source.html#l00048">48</a> of file <a class="el" href="../../db/d94/git_8py_source.html">git.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   48</span>    <span class="keyword">def </span>install(self):</div>
-<div class="line"><span class="lineno">   49</span>        os.system(f<span class="stringliteral">&quot;{sys.executable} -m pip install {self.caller}&quot;</span>)</div>
-<div class="line"><span class="lineno">   50</span>        <span class="keywordflow">return</span> self</div>
-<div class="line"><span class="lineno">   51</span> </div>
+<p class="definition">Definition at line <a class="el" href="../../db/d94/git_8py_source.html#l00050">50</a> of file <a class="el" href="../../db/d94/git_8py_source.html">git.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   50</span>    <span class="keyword">def </span>install(self):</div>
+<div class="line"><span class="lineno">   51</span>        os.system(f<span class="stringliteral">&quot;{sys.executable} -m pip install {self.caller}&quot;</span>)</div>
+<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">return</span> self</div>
+<div class="line"><span class="lineno">   53</span> </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -274,23 +286,23 @@ Public Attributes</h2></td></tr>
 :param self: Represent the instance of the class
 :return: Nothing
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../db/d94/git_8py_source.html#l00032">32</a> of file <a class="el" href="../../db/d94/git_8py_source.html">git.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>    <span class="keyword">def </span>remove_info(self):</div>
-<div class="line"><span class="lineno">   33</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   34</span><span class="stringliteral">        The remove_info function removes the README.md </span><span class="keywordflow">and</span> requirements.txt files <span class="keyword">from</span> the target directory.</div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>        :param self: Represent the instance of the <span class="keyword">class</span></div>
-<div class="line"><span class="lineno">   37</span>        :<span class="keywordflow">return</span>: Nothing</div>
-<div class="line"><span class="lineno">   38</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   39</span><span class="stringliteral">        file_names = os.listdir(self.caller + &#39;\\&#39;</span>)</div>
-<div class="line"><span class="lineno">   40</span>        <span class="keywordflow">for</span> file_name <span class="keywordflow">in</span> file_names:</div>
-<div class="line"><span class="lineno">   41</span>            <span class="keywordflow">if</span> file_name <span class="keywordflow">in</span> [<span class="stringliteral">&quot;README.md&quot;</span>, <span class="stringliteral">&#39;requirements.txt&#39;</span>, <span class="stringliteral">&#39;LICENSE&#39;</span>, <span class="stringliteral">&#39;.gitignore&#39;</span>]:</div>
-<div class="line"><span class="lineno">   42</span>                <span class="keywordflow">try</span>:</div>
-<div class="line"><span class="lineno">   43</span>                    os.remove(self.caller + <span class="stringliteral">&#39;\\&#39;</span> + file_name)</div>
-<div class="line"><span class="lineno">   44</span>                <span class="keywordflow">except</span> FileNotFoundError:</div>
-<div class="line"><span class="lineno">   45</span>                    <span class="keywordflow">pass</span></div>
-<div class="line"><span class="lineno">   46</span>        <span class="keywordflow">return</span> self</div>
-<div class="line"><span class="lineno">   47</span>    </div>
+<p class="definition">Definition at line <a class="el" href="../../db/d94/git_8py_source.html#l00034">34</a> of file <a class="el" href="../../db/d94/git_8py_source.html">git.py</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>    <span class="keyword">def </span>remove_info(self):</div>
+<div class="line"><span class="lineno">   35</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   36</span><span class="stringliteral">        The remove_info function removes the README.md </span><span class="keywordflow">and</span> requirements.txt files <span class="keyword">from</span> the target directory.</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>        :param self: Represent the instance of the <span class="keyword">class</span></div>
+<div class="line"><span class="lineno">   39</span>        :<span class="keywordflow">return</span>: Nothing</div>
+<div class="line"><span class="lineno">   40</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><span class="lineno">   41</span><span class="stringliteral">        file_names = os.listdir(self.caller + &#39;\\&#39;</span>)</div>
+<div class="line"><span class="lineno">   42</span>        <span class="keywordflow">for</span> file_name <span class="keywordflow">in</span> file_names:</div>
+<div class="line"><span class="lineno">   43</span>            <span class="keywordflow">if</span> file_name <span class="keywordflow">in</span> [<span class="stringliteral">&quot;README.md&quot;</span>, <span class="stringliteral">&#39;requirements.txt&#39;</span>, <span class="stringliteral">&#39;LICENSE&#39;</span>, <span class="stringliteral">&#39;.gitignore&#39;</span>]:</div>
+<div class="line"><span class="lineno">   44</span>                <span class="keywordflow">try</span>:</div>
+<div class="line"><span class="lineno">   45</span>                    os.remove(self.caller + <span class="stringliteral">&#39;\\&#39;</span> + file_name)</div>
+<div class="line"><span class="lineno">   46</span>                <span class="keywordflow">except</span> FileNotFoundError:</div>
+<div class="line"><span class="lineno">   47</span>                    <span class="keywordflow">pass</span></div>
+<div class="line"><span class="lineno">   48</span>        <span class="keywordflow">return</span> self</div>
+<div class="line"><span class="lineno">   49</span>    </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -323,7 +335,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/d94/git_8py_source.html#l00024">24</a> of file <a class="el" href="../../db/d94/git_8py_source.html">git.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/d94/git_8py_source.html#l00026">26</a> of file <a class="el" href="../../db/d94/git_8py_source.html">git.py</a>.</p>
 
 </div>
 </div>
@@ -352,7 +364,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d1/d32/namespacefinal.html">final</a></li><li class="navelem"><a class="el" href="../../de/d88/namespacefinal_1_1git.html">git</a></li><li class="navelem"><a class="el" href="../../db/d2d/classfinal_1_1git_1_1download.html">download</a></li>
-    <li class="footer">Generated on Mon Apr 24 2023 21:45:15 for final by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Apr 25 2023 14:16:31 for final by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">final<span id="projectnumber">&#160;1.0.7</span>
+   <div id="projectname">final<span id="projectnumber">&#160;1.0.8</span>
    </div>
   </td>
  </tr>
@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('d2/d7a/profiler_8py_source.html','../.
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">from</span> time <span class="keyword">import</span> perf_counter, process_time</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="../../d2/db0/namespacefinal_1_1profiler.html#afdc54e9f4a27892735fb7591e4a1a0c5">    6</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d2/db0/namespacefinal_1_1profiler.html#afdc54e9f4a27892735fb7591e4a1a0c5">Profiler</a>(target, args: list = (), time_info: bool = <span class="keyword">False</span>, output_file: bool = <span class="keyword">False</span>, _return: str = <span class="stringliteral">&quot;r&quot;</span>) -&gt; any:</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="../../d2/db0/namespacefinal_1_1profiler.html#a4483f651b5aa92d578a6f85ee3d7b6b3">    6</a></span><span class="keyword">def </span><a class="code hl_function" href="../../d2/db0/namespacefinal_1_1profiler.html#a4483f651b5aa92d578a6f85ee3d7b6b3">Profiler</a>(target, args: list = (),kwargs={}, time_info: bool = <span class="keyword">False</span>, output_file: bool = <span class="keyword">False</span>, _return: str = <span class="stringliteral">&quot;r&quot;</span>) -&gt; any:</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="stringliteral">    The Profiler function </span><span class="keywordflow">is</span> a wrapper <span class="keywordflow">for</span> the cProfile module.</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    It allows you to profile your code <span class="keywordflow">and</span> get information about it<span class="stringliteral">&#39;s performance.</span></div>
@@ -118,7 +118,7 @@ $(document).ready(function(){initNavTree('d2/d7a/profiler_8py_source.html','../.
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="stringliteral">    </span><span class="keyword">with</span> cProfile.Profile() <span class="keyword">as</span> pr:</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        _start = perf_counter()</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        response = target(*args)</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        response = target(*args, **kwargs)</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        _end = perf_counter()</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    stats = pstats.Stats(pr)</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    stats.sort_stats(pstats.SortKey.TIME)</div>
@@ -133,14 +133,14 @@ $(document).ready(function(){initNavTree('d2/d7a/profiler_8py_source.html','../.
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">return</span> float(_end - _start)</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">elif</span> _return == <span class="stringliteral">&#39;a&#39;</span>:</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> (response, float(_end - _start))</div>
-<div class="ttc" id="anamespacefinal_1_1profiler_html_afdc54e9f4a27892735fb7591e4a1a0c5"><div class="ttname"><a href="../../d2/db0/namespacefinal_1_1profiler.html#afdc54e9f4a27892735fb7591e4a1a0c5">final.profiler.Profiler</a></div><div class="ttdeci">any Profiler(target, list args=(), bool time_info=False, bool output_file=False, str _return=&quot;r&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d7a/profiler_8py_source.html#l00006">profiler.py:6</a></div></div>
+<div class="ttc" id="anamespacefinal_1_1profiler_html_a4483f651b5aa92d578a6f85ee3d7b6b3"><div class="ttname"><a href="../../d2/db0/namespacefinal_1_1profiler.html#a4483f651b5aa92d578a6f85ee3d7b6b3">final.profiler.Profiler</a></div><div class="ttdeci">any Profiler(target, list args=(), kwargs={}, bool time_info=False, bool output_file=False, str _return=&quot;r&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d7a/profiler_8py_source.html#l00006">profiler.py:6</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_00be059147f0ec065b8d1d4e1d2449cb.html">final</a></li><li class="navelem"><a class="el" href="../../d2/d7a/profiler_8py.html">profiler.py</a></li>
-    <li class="footer">Generated on Mon Apr 24 2023 21:45:15 for final by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Apr 25 2023 14:16:31 for final by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

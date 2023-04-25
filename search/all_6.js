@@ -10,13 +10,12 @@ var searchData=
   ['final_7',['final',['../d1/d32/namespacefinal.html',1,'']]],
   ['format_8',['format',['../de/db3/namespacefinal_1_1rapi.html#afc59ae71a153c70d7f3f58e3b6503e34',1,'final::rapi']]],
   ['git_9',['git',['../de/d88/namespacefinal_1_1git.html',1,'final']]],
-  ['git_5flegacy_10',['git_legacy',['../d7/d0c/namespacefinal_1_1git__legacy.html',1,'final']]],
-  ['mathematical_11',['mathematical',['../d9/da2/namespacefinal_1_1mathematical.html',1,'final']]],
-  ['music_12',['music',['../d5/d90/namespacefinal_1_1music.html',1,'final']]],
-  ['profiler_13',['profiler',['../d2/db0/namespacefinal_1_1profiler.html',1,'final']]],
-  ['pymp4_14',['pymp4',['../df/d8d/namespacefinal_1_1pymp4.html',1,'final']]],
-  ['pywinmove_15',['pywinmove',['../d0/dd6/namespacefinal_1_1pywinmove.html',1,'final']]],
-  ['rapi_16',['rapi',['../de/db3/namespacefinal_1_1rapi.html',1,'final']]],
-  ['sql_17',['sql',['../d8/de9/namespacefinal_1_1sql.html',1,'final']]],
-  ['writing_18',['writing',['../dc/d86/namespacefinal_1_1writing.html',1,'final']]]
+  ['mathematical_10',['mathematical',['../d9/da2/namespacefinal_1_1mathematical.html',1,'final']]],
+  ['music_11',['music',['../d5/d90/namespacefinal_1_1music.html',1,'final']]],
+  ['profiler_12',['profiler',['../d2/db0/namespacefinal_1_1profiler.html',1,'final']]],
+  ['pymp4_13',['pymp4',['../df/d8d/namespacefinal_1_1pymp4.html',1,'final']]],
+  ['pywinmove_14',['pywinmove',['../d0/dd6/namespacefinal_1_1pywinmove.html',1,'final']]],
+  ['rapi_15',['rapi',['../de/db3/namespacefinal_1_1rapi.html',1,'final']]],
+  ['sql_16',['sql',['../d8/de9/namespacefinal_1_1sql.html',1,'final']]],
+  ['writing_17',['writing',['../dc/d86/namespacefinal_1_1writing.html',1,'final']]]
 ];

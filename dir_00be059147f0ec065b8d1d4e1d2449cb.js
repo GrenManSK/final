@@ -6,7 +6,6 @@ var dir_00be059147f0ec065b8d1d4e1d2449cb =
     [ "completer.py", "dc/dcc/completer_8py.html", "dc/dcc/completer_8py" ],
     [ "downloadmusic.py", "d5/dc3/downloadmusic_8py.html", "d5/dc3/downloadmusic_8py" ],
     [ "git.py", "db/d94/git_8py.html", "db/d94/git_8py" ],
-    [ "git_legacy.py", "d3/d18/git__legacy_8py.html", "d3/d18/git__legacy_8py" ],
     [ "mathematical.py", "d7/d03/mathematical_8py.html", "d7/d03/mathematical_8py" ],
     [ "music.py", "db/dd9/music_8py.html", "db/dd9/music_8py" ],
     [ "profiler.py", "d2/d7a/profiler_8py.html", "d2/d7a/profiler_8py" ],

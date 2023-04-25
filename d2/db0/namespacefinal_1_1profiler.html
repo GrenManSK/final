@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">final<span id="projectnumber">&#160;1.0.7</span>
+   <div id="projectname">final<span id="projectnumber">&#160;1.0.8</span>
    </div>
   </td>
  </tr>
@@ -97,12 +97,12 @@ $(document).ready(function(){initNavTree('d2/db0/namespacefinal_1_1profiler.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afdc54e9f4a27892735fb7591e4a1a0c5"><td class="memItemLeft" align="right" valign="top">any&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/db0/namespacefinal_1_1profiler.html#afdc54e9f4a27892735fb7591e4a1a0c5">Profiler</a> (target, list args=(), bool time_info=False, bool output_file=False, str _return=&quot;r&quot;)</td></tr>
-<tr class="separator:afdc54e9f4a27892735fb7591e4a1a0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4483f651b5aa92d578a6f85ee3d7b6b3"><td class="memItemLeft" align="right" valign="top">any&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/db0/namespacefinal_1_1profiler.html#a4483f651b5aa92d578a6f85ee3d7b6b3">Profiler</a> (target, list args=(), kwargs={}, bool time_info=False, bool output_file=False, str _return=&quot;r&quot;)</td></tr>
+<tr class="separator:a4483f651b5aa92d578a6f85ee3d7b6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="afdc54e9f4a27892735fb7591e4a1a0c5" name="afdc54e9f4a27892735fb7591e4a1a0c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afdc54e9f4a27892735fb7591e4a1a0c5">&#9670;&#160;</a></span>Profiler()</h2>
+<a id="a4483f651b5aa92d578a6f85ee3d7b6b3" name="a4483f651b5aa92d578a6f85ee3d7b6b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4483f651b5aa92d578a6f85ee3d7b6b3">&#9670;&#160;</a></span>Profiler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -118,6 +118,12 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">list &#160;</td>
           <td class="paramname"><em>args</em> = <code>()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>kwargs</em> = <code>{}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -162,7 +168,7 @@ _return: use 'r' to return respone, 't' to return time or 'a' to return tuple of
 :return: A tuple: (response, time)
 </pre> 
 <p class="definition">Definition at line <a class="el" href="../../d2/d7a/profiler_8py_source.html#l00006">6</a> of file <a class="el" href="../../d2/d7a/profiler_8py_source.html">profiler.py</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    6</span><span class="keyword">def </span>Profiler(target, args: list = (), time_info: bool = <span class="keyword">False</span>, output_file: bool = <span class="keyword">False</span>, _return: str = <span class="stringliteral">&quot;r&quot;</span>) -&gt; any:</div>
+<div class="fragment"><div class="line"><span class="lineno">    6</span><span class="keyword">def </span>Profiler(target, args: list = (),kwargs={}, time_info: bool = <span class="keyword">False</span>, output_file: bool = <span class="keyword">False</span>, _return: str = <span class="stringliteral">&quot;r&quot;</span>) -&gt; any:</div>
 <div class="line"><span class="lineno">    7</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">    8</span><span class="stringliteral">    The Profiler function </span><span class="keywordflow">is</span> a wrapper <span class="keywordflow">for</span> the cProfile module.</div>
 <div class="line"><span class="lineno">    9</span>    It allows you to profile your code <span class="keywordflow">and</span> get information about it<span class="stringliteral">&#39;s performance.</span></div>
@@ -183,7 +189,7 @@ _return: use 'r' to return respone, 't' to return time or 'a' to return tuple of
 <div class="line"><span class="lineno">   24</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">   25</span><span class="stringliteral">    </span><span class="keyword">with</span> cProfile.Profile() <span class="keyword">as</span> pr:</div>
 <div class="line"><span class="lineno">   26</span>        _start = perf_counter()</div>
-<div class="line"><span class="lineno">   27</span>        response = target(*args)</div>
+<div class="line"><span class="lineno">   27</span>        response = target(*args, **kwargs)</div>
 <div class="line"><span class="lineno">   28</span>        _end = perf_counter()</div>
 <div class="line"><span class="lineno">   29</span>    stats = pstats.Stats(pr)</div>
 <div class="line"><span class="lineno">   30</span>    stats.sort_stats(pstats.SortKey.TIME)</div>
@@ -207,7 +213,7 @@ _return: use 'r' to return respone, 't' to return time or 'a' to return tuple of
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../d1/d32/namespacefinal.html">final</a></li><li class="navelem"><a class="el" href="../../d2/db0/namespacefinal_1_1profiler.html">profiler</a></li>
-    <li class="footer">Generated on Mon Apr 24 2023 21:45:15 for final by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
+    <li class="footer">Generated on Tue Apr 25 2023 14:16:31 for final by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

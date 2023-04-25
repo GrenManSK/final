@@ -145,7 +145,7 @@
                  <Node>
                   <Name>download</Name>
                   <Path>db/d2d/classfinal_1_1git_1_1download.html</Path>
-                  <Anchor>ad5135b2394a2594a002b6918042c684b</Anchor>
+                  <Anchor>a3dab02ca5b932963d764ab6db7dad730</Anchor>
                  </Node>
                  <Node>
                   <Name>delete</Name>
@@ -178,63 +178,6 @@
                   <Anchor>a2882bd0dd0d141628881d9efbc0c55d0</Anchor>
                  </Node>
                 </Subnodes>
-               </Node>
-              </Subnodes>
-             </Node>
-             <Node>
-              <Name>git_legacy</Name>
-              <Path>d7/d0c/namespacefinal_1_1git__legacy.html</Path>
-            <Subnodes>
-               <Node>
-                <Name>download</Name>
-                <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-              <Subnodes>
-                 <Node>
-                  <Name>__init__</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>ad18c38ffd82ef16d89a207a935b2c7f2</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>download</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>abeae32779bbbceb664486d8745372087</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>extract</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a251aed749eda6e943a576b326bf090f9</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>remove_info</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>aaf6b2e9657cd8a5e0ae0730b44384eaf</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>directory</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a7c3897c95bd281af31313473c0eb1a7b</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>name</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a792d7437bdcc788242a770f2b15e0d52</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>target_dir</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a17a5a5e00b123c4e7a81be38c3e5cb06</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>url</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a907dd38e88d57e06bdaec9dd033deed2</Anchor>
-                 </Node>
-                </Subnodes>
-               </Node>
-               <Node>
-                <Name>download_file</Name>
-                <Path>d7/d0c/namespacefinal_1_1git__legacy.html</Path>
-                <Anchor>a4a4961e44bee7df0238f659d769e0e9d</Anchor>
                </Node>
               </Subnodes>
              </Node>
@@ -375,7 +318,7 @@
                <Node>
                 <Name>Profiler</Name>
                 <Path>d2/db0/namespacefinal_1_1profiler.html</Path>
-                <Anchor>afdc54e9f4a27892735fb7591e4a1a0c5</Anchor>
+                <Anchor>a4483f651b5aa92d578a6f85ee3d7b6b3</Anchor>
                </Node>
               </Subnodes>
              </Node>
@@ -877,7 +820,7 @@
                  <Node>
                   <Name>download</Name>
                   <Path>db/d2d/classfinal_1_1git_1_1download.html</Path>
-                  <Anchor>ad5135b2394a2594a002b6918042c684b</Anchor>
+                  <Anchor>a3dab02ca5b932963d764ab6db7dad730</Anchor>
                  </Node>
                  <Node>
                   <Name>delete</Name>
@@ -908,58 +851,6 @@
                   <Name>url</Name>
                   <Path>db/d2d/classfinal_1_1git_1_1download.html</Path>
                   <Anchor>a2882bd0dd0d141628881d9efbc0c55d0</Anchor>
-                 </Node>
-                </Subnodes>
-               </Node>
-              </Subnodes>
-             </Node>
-             <Node>
-              <Name>git_legacy</Name>
-              <Path>d7/d0c/namespacefinal_1_1git__legacy.html</Path>
-            <Subnodes>
-               <Node>
-                <Name>download</Name>
-                <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-              <Subnodes>
-                 <Node>
-                  <Name>__init__</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>ad18c38ffd82ef16d89a207a935b2c7f2</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>download</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>abeae32779bbbceb664486d8745372087</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>extract</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a251aed749eda6e943a576b326bf090f9</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>remove_info</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>aaf6b2e9657cd8a5e0ae0730b44384eaf</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>directory</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a7c3897c95bd281af31313473c0eb1a7b</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>name</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a792d7437bdcc788242a770f2b15e0d52</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>target_dir</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a17a5a5e00b123c4e7a81be38c3e5cb06</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>url</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a907dd38e88d57e06bdaec9dd033deed2</Anchor>
                  </Node>
                 </Subnodes>
                </Node>
@@ -1403,10 +1294,6 @@
             <Path>db/d2d/classfinal_1_1git_1_1download.html</Path>
            </Node>
            <Node>
-            <Name>final.git_legacy.download</Name>
-            <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-           </Node>
-           <Node>
             <Name>final.rapi.fanart</Name>
             <Path>d5/d46/classfinal_1_1rapi_1_1fanart.html</Path>
            </Node>
@@ -1622,7 +1509,7 @@
                  <Node>
                   <Name>download</Name>
                   <Path>db/d2d/classfinal_1_1git_1_1download.html</Path>
-                  <Anchor>ad5135b2394a2594a002b6918042c684b</Anchor>
+                  <Anchor>a3dab02ca5b932963d764ab6db7dad730</Anchor>
                  </Node>
                  <Node>
                   <Name>delete</Name>
@@ -1655,63 +1542,6 @@
                   <Anchor>a2882bd0dd0d141628881d9efbc0c55d0</Anchor>
                  </Node>
                 </Subnodes>
-               </Node>
-              </Subnodes>
-             </Node>
-             <Node>
-              <Name>git_legacy.py</Name>
-              <Path>d3/d18/git__legacy_8py.html</Path>
-            <Subnodes>
-               <Node>
-                <Name>final.git_legacy.download</Name>
-                <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-              <Subnodes>
-                 <Node>
-                  <Name>__init__</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>ad18c38ffd82ef16d89a207a935b2c7f2</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>download</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>abeae32779bbbceb664486d8745372087</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>extract</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a251aed749eda6e943a576b326bf090f9</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>remove_info</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>aaf6b2e9657cd8a5e0ae0730b44384eaf</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>directory</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a7c3897c95bd281af31313473c0eb1a7b</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>name</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a792d7437bdcc788242a770f2b15e0d52</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>target_dir</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a17a5a5e00b123c4e7a81be38c3e5cb06</Anchor>
-                 </Node>
-                 <Node>
-                  <Name>url</Name>
-                  <Path>d2/df5/classfinal_1_1git__legacy_1_1download.html</Path>
-                  <Anchor>a907dd38e88d57e06bdaec9dd033deed2</Anchor>
-                 </Node>
-                </Subnodes>
-               </Node>
-               <Node>
-                <Name>download_file</Name>
-                <Path>d3/d18/git__legacy_8py.html</Path>
-                <Anchor>a4a4961e44bee7df0238f659d769e0e9d</Anchor>
                </Node>
               </Subnodes>
              </Node>
@@ -1852,7 +1682,7 @@
                <Node>
                 <Name>Profiler</Name>
                 <Path>d2/d7a/profiler_8py.html</Path>
-                <Anchor>afdc54e9f4a27892735fb7591e4a1a0c5</Anchor>
+                <Anchor>a4483f651b5aa92d578a6f85ee3d7b6b3</Anchor>
                </Node>
               </Subnodes>
              </Node>

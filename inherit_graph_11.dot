@@ -5,5 +5,7 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [label="final.writing.installing\l_carousel",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d7/df7/classfinal_1_1writing_1_1installing__carousel.html",tooltip=" "];
+  Node0 [label="object",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node0 -> Node1 [dir="back",color="steelblue1",style="solid"];
+  Node1 [label="final.completer.SimpleCompleter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/d71/classfinal_1_1completer_1_1_simple_completer.html",tooltip=" "];
 }

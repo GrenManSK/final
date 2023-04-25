@@ -60,11 +60,6 @@ On line 411 remove all content of the line and change it to 'transform_plan_raw 
 - Same as `git clone`
 - 'delete' function DOES NOT delete .git folder
 
-## git_legacy.py
-
-- Older version of git.py
-- Complete change of algorithm
-
 ## mathematical.py
 
 - Library to use some mathematical calculations inclucding random id generation
@@ -78,10 +73,23 @@ On line 411 remove all content of the line and change it to 'transform_plan_raw 
 - Using [krkr-xp3](https://github.com/awaken1ng/krkr-xp3/) as packer
 - Can pack files with filesize limit e.g. file will be split
 
+## patch.py
+
+- Output changes in current folder with files from github.com
+  
+### Example
+
+```python
+from final import patch
+from final import VERSION
+
+patch.patch('https://github.com/GrenManSK/final.git', VERSION)
+```
+
 ## profiler.py
 
 - Profile your function
-- See how many time your function run and also if you output a file you can see see how long operations run
+- See how long your function run and also if you output a file you can see see how long individual operations run
 
 ## pymp4.py
 

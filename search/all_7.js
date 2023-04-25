@@ -10,6 +10,5 @@ var searchData=
   ['get_5ftime_7',['get_time',['../dc/d86/namespacefinal_1_1writing.html#afc5e3126366d1e5ecc6ce6e80db58c43',1,'final::writing']]],
   ['get_5furl_8',['get_url',['../d5/d46/classfinal_1_1rapi_1_1fanart.html#ab530dbabc0f091dbd2311dbe3f2c3fd7',1,'final::rapi::fanart']]],
   ['getq_9',['getq',['../d5/d8a/classfinal_1_1rapi_1_1animq.html#a46dbbb33121ec0503fb6ffb3f738663c',1,'final::rapi::animq']]],
-  ['git_2epy_10',['git.py',['../db/d94/git_8py.html',1,'']]],
-  ['git_5flegacy_2epy_11',['git_legacy.py',['../d3/d18/git__legacy_8py.html',1,'']]]
+  ['git_2epy_10',['git.py',['../db/d94/git_8py.html',1,'']]]
 ];
