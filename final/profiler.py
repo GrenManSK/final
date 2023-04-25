@@ -3,7 +3,7 @@ import pstats
 from time import perf_counter, process_time
 
 
-def Profiler(target, args: list = (), time_info: bool = False, output_file: bool = False, _return: str = "r") -> any:
+def Profiler(target, args: list = (),kwargs={}, time_info: bool = False, output_file: bool = False, _return: str = "r") -> any:
     """
     The Profiler function is a wrapper for the cProfile module.
     It allows you to profile your code and get information about it's performance.
@@ -24,7 +24,7 @@ def Profiler(target, args: list = (), time_info: bool = False, output_file: bool
     """
     with cProfile.Profile() as pr:
         _start = perf_counter()
-        response = target(*args)
+        response = target(*args, **kwargs)
         _end = perf_counter()
     stats = pstats.Stats(pr)
     stats.sort_stats(pstats.SortKey.TIME)

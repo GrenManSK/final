@@ -1,8 +1,10 @@
 
 .history/
-patch.py
 final/__pycache__/
 final.egg-info/
 build/
 Website/
 Doxyfile
+patch.md
+tests/
+test.py

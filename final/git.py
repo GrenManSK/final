@@ -9,15 +9,17 @@ class download:
         self.url = url
         self.caller = os.getcwd() + '/' + self.url.split('/')[-1].split('.')[0]
 
-    def download(self):
+    def download(self, folder=''):
         """
         The download function downloads the zip file from the url, extracts it and returns a list of all files in the directory
 
         :param self: Access the class attributes and methods
         :return: The directory of the extracted files
         """
+        if folder != '':
+            self.caller = folder
         directory_before = os.listdir()
-        os.system(f'git clone {self.url}')
+        os.system(f'git clone {self.url} {folder}')
         name = self.url.split('/')[-1].split('.')[0]
         os.system(f'cd {name}')
         directory_after = os.listdir()
