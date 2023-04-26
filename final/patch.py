@@ -88,6 +88,8 @@ def readFileToText(filePath):
         return s
     except FileNotFoundError:
         return 'File was removed'
+    except UnicodeDecodeError:
+        return ''
 
 
 def one_file(origin, lastest, filename):
