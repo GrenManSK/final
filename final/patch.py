@@ -24,6 +24,8 @@ class patch:
 
         self.get_patch()
 
+        print('Waiting 2 seconds to clear Access Denied Error')
+        sleep(2)
         for i in os.listdir(folder_to_remove):
             if i.endswith('git'):
                 tmp = os.path.join(folder_to_remove, i)
