@@ -109,22 +109,23 @@ class pack:
                 breaked = pack.pack_one(self)
                 if not breaked:
                     break
-        sleep(1)
-        os.remove('xp3.py')
-        os.remove('xp3reader.py')
-        os.remove('xp3writer.py')
-        shutil.rmtree('structs')
-        if isinstance(self.filename, str):
-            try:
-                shutil.rmtree(self.filename)
-            except FileNotFoundError:
-                pass
-        elif isinstance(self.filename, list):
-            for i in range(len(self.filename)):
+        if download:
+            sleep(1)
+            os.remove('xp3.py')
+            os.remove('xp3reader.py')
+            os.remove('xp3writer.py')
+            shutil.rmtree('structs')
+            if isinstance(self.filename, str):
                 try:
-                    shutil.rmtree(self.filename[i])
+                    shutil.rmtree(self.filename)
                 except FileNotFoundError:
                     pass
+            elif isinstance(self.filename, list):
+                for i in range(len(self.filename)):
+                    try:
+                        shutil.rmtree(self.filename[i])
+                    except FileNotFoundError:
+                        pass
 
     def pack_one(self):
         global datapart
