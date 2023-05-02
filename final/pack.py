@@ -83,24 +83,24 @@ class pack:
             os.remove('xp3.zip')
             if directory == None:
                 raise FindError
-        sleep(0.5)
-        shutil.move(directory + "/xp3.py", 'xp3.py')
-        shutil.move(directory + "/xp3reader.py", 'xp3reader.py')
-        shutil.move(directory + "/xp3writer.py", 'xp3writer.py')
-        os.mkdir('structs')
-        for i in glob.iglob(directory + '/*'):
-            try:
-                shutil.copy2(i, './')
-            except PermissionError:
-                continue
-        for i in glob.iglob(directory + '/structs/*'):
-            try:
-                shutil.copy2(i, 'structs/')
-            except PermissionError:
-                continue
-        for i in ['requirements.txt', 'README.md', 'tests.py']:
-            os.remove(i)
-        shutil.rmtree(directory)
+            sleep(0.5)
+            shutil.move(directory + "/xp3.py", 'xp3.py')
+            shutil.move(directory + "/xp3reader.py", 'xp3reader.py')
+            shutil.move(directory + "/xp3writer.py", 'xp3writer.py')
+            os.mkdir('structs')
+            for i in glob.iglob(directory + '/*'):
+                try:
+                    shutil.copy2(i, './')
+                except PermissionError:
+                    continue
+            for i in glob.iglob(directory + '/structs/*'):
+                try:
+                    shutil.copy2(i, 'structs/')
+                except PermissionError:
+                    continue
+            for i in ['requirements.txt', 'README.md', 'tests.py']:
+                os.remove(i)
+            shutil.rmtree(directory)
         cut = False
         if self.max_mbs == 0:
             pack.pack_one(self)
