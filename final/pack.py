@@ -115,10 +115,16 @@ class pack:
         os.remove('xp3writer.py')
         shutil.rmtree('structs')
         if isinstance(self.filename, str):
-            shutil.rmtree(self.filename)
+            try:
+                shutil.rmtree(self.filename)
+            except FileNotFoundError:
+                pass
         elif isinstance(self.filename, list):
             for i in range(len(self.filename)):
-                shutil.rmtree(self.filename[i])
+                try:
+                    shutil.rmtree(self.filename[i])
+                except FileNotFoundError:
+                    pass
 
     def pack_one(self):
         global datapart
