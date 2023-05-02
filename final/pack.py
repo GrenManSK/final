@@ -62,26 +62,27 @@ class pack:
             return False
         return True
 
-    def pack(self):
-        pack.download(
-            'https://github.com/awaken1ng/krkr-xp3/zipball/master', name := 'xp3.zip')
-        with zipfile.ZipFile(name, mode='r') as zip:
-            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
-                try:
-                    zip.extract(member)
-                    tqdm.write(
-                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                except zipfile.error as e:
-                    pass
-        directory = None
-        for path, currentDirectory, files in os.walk(Path.cwd()):
-            for directory1 in currentDirectory:
-                if directory1.startswith("awaken1ng-krkr-xp3-"):
-                    print(directory1)
-                    directory = directory1
-        os.remove('xp3.zip')
-        if directory == None:
-            raise FindError
+    def pack(self, download = True):
+        if download:
+            pack.download(
+                'https://github.com/awaken1ng/krkr-xp3/zipball/master', name := 'xp3.zip')
+            with zipfile.ZipFile(name, mode='r') as zip:
+                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+                    try:
+                        zip.extract(member)
+                        tqdm.write(
+                            f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
+                    except zipfile.error as e:
+                        pass
+            directory = None
+            for path, currentDirectory, files in os.walk(Path.cwd()):
+                for directory1 in currentDirectory:
+                    if directory1.startswith("awaken1ng-krkr-xp3-"):
+                        print(directory1)
+                        directory = directory1
+            os.remove('xp3.zip')
+            if directory == None:
+                raise FindError
         sleep(0.5)
         shutil.move(directory + "/xp3.py", 'xp3.py')
         shutil.move(directory + "/xp3reader.py", 'xp3reader.py')
