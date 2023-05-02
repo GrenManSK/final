@@ -52,48 +52,49 @@ class unpack:
             return False
         return True
 
-    def unpack(self):
-        print('Downloading krkr-xp3 ...', end='\r')
-        unpack.download(
-            'https://github.com/awaken1ng/krkr-xp3/zipball/master', name := 'xp3.zip')
-        print('Downloading krkr-xp3 DONE\n')
-        print('Exporting krkr-xp3\n')
-        with zipfile.ZipFile(name, mode='r') as zip:
-            for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+    def unpack(self, download = True):
+        if download:
+            print('Downloading krkr-xp3 ...', end='\r')
+            unpack.download(
+                'https://github.com/awaken1ng/krkr-xp3/zipball/master', name := 'xp3.zip')
+            print('Downloading krkr-xp3 DONE\n')
+            print('Exporting krkr-xp3\n')
+            with zipfile.ZipFile(name, mode='r') as zip:
+                for member in tqdm(iterable=zip.namelist(), total=len(zip.namelist()), desc='Extracting '):
+                    try:
+                        zip.extract(member)
+                        tqdm.write(
+                            f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
+                    except zipfile.error as e:
+                        pass
+            print('\nExporting krkr-xp3 DONE\n')
+            directory = None
+            for path, currentDirectory, file in os.walk(Path.cwd()):
+                for directory1 in currentDirectory:
+                    if directory1.startswith("awaken1ng-krkr-xp3-"):
+                        print(directory1)
+                        directory = directory1
+            os.remove('xp3.zip')
+            if directory is None:
+                raise FindError
+            sleep(0.5)
+            shutil.move(directory + "/xp3.py", 'xp3.py')
+            shutil.move(directory + "/xp3reader.py", 'xp3reader.py')
+            shutil.move(directory + "/xp3writer.py", 'xp3writer.py')
+            os.mkdir('structs')
+            for i in glob.iglob(directory + '/*'):
                 try:
-                    zip.extract(member)
-                    tqdm.write(
-                        f"{os.path.basename(member)}(" + str(os.path.getsize(member)) + "KB)")
-                except zipfile.error as e:
-                    pass
-        print('\nExporting krkr-xp3 DONE\n')
-        directory = None
-        for path, currentDirectory, file in os.walk(Path.cwd()):
-            for directory1 in currentDirectory:
-                if directory1.startswith("awaken1ng-krkr-xp3-"):
-                    print(directory1)
-                    directory = directory1
-        os.remove('xp3.zip')
-        if directory is None:
-            raise FindError
-        sleep(0.5)
-        shutil.move(directory + "/xp3.py", 'xp3.py')
-        shutil.move(directory + "/xp3reader.py", 'xp3reader.py')
-        shutil.move(directory + "/xp3writer.py", 'xp3writer.py')
-        os.mkdir('structs')
-        for i in glob.iglob(directory + '/*'):
-            try:
-                shutil.copy2(i, './')
-            except PermissionError:
-                continue
-        for i in glob.iglob(directory + '/structs/*'):
-            try:
-                shutil.copy2(i, 'structs/')
-            except PermissionError:
-                continue
-        for i in ['requirements.txt', 'README.md', 'tests.py']:
-            os.remove(i)
-        shutil.rmtree(directory)
+                    shutil.copy2(i, './')
+                except PermissionError:
+                    continue
+            for i in glob.iglob(directory + '/structs/*'):
+                try:
+                    shutil.copy2(i, 'structs/')
+                except PermissionError:
+                    continue
+            for i in ['requirements.txt', 'README.md', 'tests.py']:
+                os.remove(i)
+            shutil.rmtree(directory)
         datafiles = self.files
         if len(datafiles) == 0:
             for file in os.listdir(self.folder):
@@ -103,11 +104,12 @@ class unpack:
         for i in range(1, len(datafiles)+1):
             print('\nUnpacking data\n')
             unpack.unpack_one(self, datafiles[-i])
-        sleep(1)
-        os.remove('xp3.py')
-        os.remove('xp3reader.py')
-        os.remove('xp3writer.py')
-        shutil.rmtree('structs')
+        if download:
+            sleep(1)
+            os.remove('xp3.py')
+            os.remove('xp3reader.py')
+            os.remove('xp3writer.py')
+            shutil.rmtree('structs')
 
     def unpack_one(self, filename):
         with zipfile.ZipFile(filename, mode='r') as zip:
