@@ -14,5 +14,5 @@
 # import final.unpack
 # import final.writing
 
-VERSION = '1.0.8'
-AUTHOR = 'GrenManSK'
+VERSION = "1.0.9"
+AUTHOR = "GrenManSK"

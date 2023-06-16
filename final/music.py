@@ -2,7 +2,8 @@
 
 import os
 from pygame import mixer
-os.system('cls')
+
+os.system("cls")
 
 
 class music:
@@ -37,7 +38,9 @@ class music:
         """
         return mixer.music.play(loops=loops, fade_ms=fade, start=start)
 
-    def lplay(self, path: str, loops: int = -1, fade: int = 0, start: float = 0.0) -> None:
+    def lplay(
+        self, path: str, loops: int = -1, fade: int = 0, start: float = 0.0
+    ) -> None:
         """
         The lplay function plays a song from the given path.
         The lplay function has three parameters:
@@ -102,8 +105,9 @@ class Channel:
         :return: None
         :doc-author: Trelent
         """
-        return mixer.Channel(self.channel).play(mixer.Sound(path),
-                                         loops=self.loops, fade_ms=self.fade)
+        return mixer.Channel(self.channel).play(
+            mixer.Sound(path), loops=self.loops, fade_ms=self.fade
+        )
 
     def pause(self) -> None:
         """

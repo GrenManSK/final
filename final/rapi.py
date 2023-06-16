@@ -29,8 +29,9 @@ import pygetwindow
 import final.pymp4
 
 
-logging.basicConfig(level=logging.WARNING,
-                    format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.WARNING, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 
 def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
@@ -48,14 +49,15 @@ def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
     """
     if os.path.exists(fname):
         logging.warning(
-            'file %s already exists, still downloading and replacing', fname)
+            "file %s already exists, still downloading and replacing", fname
+        )
     try:
         resp = requests.get(url, stream=True)
-        total: int = int(resp.headers.get('content-length', 0))
-        with open(fname, 'wb') as file, tqdm(
+        total: int = int(resp.headers.get("content-length", 0))
+        with open(fname, "wb") as file, tqdm(
             desc=fname,
             total=total,
-            unit='iB',
+            unit="iB",
             unit_scale=True,
             unit_divisor=1024,
         ) as bar:
@@ -76,18 +78,18 @@ class animq:
     def __init__(self):
         try:
             self.data: dict[str, str] = requests.get(
-                "https://animechan.vercel.app/api/random").json()
+                "https://animechan.vercel.app/api/random"
+            ).json()
         except requests.exceptions.ConnectionError:
             logging.error("Connection error")
-            raise ConnectionError(
-                'Make sure you have a connection established')
+            raise ConnectionError("Make sure you have a connection established")
         try:
             self.anime: str = self.data["anime"]
             self.character: str = self.data["character"]
             self.quote: str = self.data["quote"]
         except TypeError:
             logging.error("No data available")
-            raise ValueError('Server returned no data')
+            raise ValueError("Server returned no data")
 
     def getq(self):
         """
@@ -97,40 +99,75 @@ class animq:
         :return: A string containing the anime, character and quote
         """
 
-        return "Anime: " + self.anime + '\nCharacter: ' + self.character + "\nQuote: " + self.quote
+        return (
+            "Anime: "
+            + self.anime
+            + "\nCharacter: "
+            + self.character
+            + "\nQuote: "
+            + self.quote
+        )
 
 
 class fanart:
-    def __init__(self, server: int = 0, type: str = 'sfw', category: str = 'waifu'):
+    def __init__(self, server: int = 0, type: str = "sfw", category: str = "waifu"):
         self.error: list[str] = []
         servers = [0, 1]
-        types = ['sfw', 'nsfw']
-        category_sfw: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush",
-                                   "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe", "back"]
-        category_nsfw: list[str] = ['waifu', 'neko', 'trap', 'blowjob', 'back']
+        types = ["sfw", "nsfw"]
+        category_sfw: list[str] = [
+            "waifu",
+            "neko",
+            "shinobu",
+            "megumin",
+            "bully",
+            "cuddle",
+            "cry",
+            "hug",
+            "awoo",
+            "kiss",
+            "lick",
+            "pat",
+            "smug",
+            "bonk",
+            "yeet",
+            "blush",
+            "smile",
+            "wave",
+            "highfive",
+            "handhold",
+            "nom",
+            "bite",
+            "glomp",
+            "slap",
+            "kill",
+            "kick",
+            "happy",
+            "wink",
+            "poke",
+            "dance",
+            "cringe",
+            "back",
+        ]
+        category_nsfw: list[str] = ["waifu", "neko", "trap", "blowjob", "back"]
         if not type in types:
             logging.error("Unknown type")
-            raise ValueError(f'Type not found {types}, given {type}')
-        if type == 'sfw' and category not in category_sfw and server == 0:
+            raise ValueError(f"Type not found {types}, given {type}")
+        if type == "sfw" and category not in category_sfw and server == 0:
             logging.error("Unknown category")
             if category in category_nsfw:
-                raise ValueError(f'Category not found, but found in type nsfw')
-            raise ValueError(
-                f'Category not found {category_sfw}, given {category}')
-        if type == 'nsfw' and category not in category_nsfw and server == 0:
-            logging.error('Unknown category')
+                raise ValueError(f"Category not found, but found in type nsfw")
+            raise ValueError(f"Category not found {category_sfw}, given {category}")
+        if type == "nsfw" and category not in category_nsfw and server == 0:
+            logging.error("Unknown category")
             if category in category_sfw:
-                raise ValueError(f'Category not found, but found in type sfw')
-            raise ValueError(
-                f'Category not found {category_nsfw}, given {category}')
+                raise ValueError(f"Category not found, but found in type sfw")
+            raise ValueError(f"Category not found {category_nsfw}, given {category}")
         if server == 0:
             try:
-                resp = requests.get(
-                    "https://api.waifu.pics/" + type + "/" + category)
+                resp = requests.get("https://api.waifu.pics/" + type + "/" + category)
             except requests.exceptions.ConnectionError:
                 logging.error("Connection error")
-                raise ConnectionError(
-                    'Make sure you have a connection established')
+                raise ConnectionError("Make sure you have a connection established")
             self.data: dict[str, str] = resp.json()
             self.res = requests.get(self.data["url"], stream=True)
         elif server == 1:
@@ -138,49 +175,78 @@ class fanart:
                 resp = requests.get("https://nekos.best/api/v2/neko")
             except requests.exceptions.ConnectionError:
                 logging.error("Connection error")
-                raise ConnectionError(
-                    'Make sure you have a connection established')
+                raise ConnectionError("Make sure you have a connection established")
             self.data: dict[str, str] = resp.json()
             self.res = requests.get(
-                self.data["results"][0]["url"], stream=True)  # type: ignore
-            if type != 'sfw' or category != 'waifu':
+                self.data["results"][0]["url"], stream=True
+            )  # type: ignore
+            if type != "sfw" or category != "waifu":
                 logging.warning("Type and category not supported on server 1")
                 self.error.append(
-                    f'type or category not supported on this server, given {server}')
+                    f"type or category not supported on this server, given {server}"
+                )
         else:
             raise ValueError(f"Server not found: {servers}, given {server}")
         if self.res.status_code == 200:
             self.server = server
 
-    def get_new(self, server: int = 0, type: str = 'sfw', category: str = 'waifu'):
+    def get_new(self, server: int = 0, type: str = "sfw", category: str = "waifu"):
         servers = [0, 1]
-        types = ['sfw', 'nsfw']
-        category_sfw: list[str] = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush",
-                                   "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe", "back"]
-        category_nsfw: list[str] = ['waifu', 'neko', 'trap', 'blowjob', 'back']
+        types = ["sfw", "nsfw"]
+        category_sfw: list[str] = [
+            "waifu",
+            "neko",
+            "shinobu",
+            "megumin",
+            "bully",
+            "cuddle",
+            "cry",
+            "hug",
+            "awoo",
+            "kiss",
+            "lick",
+            "pat",
+            "smug",
+            "bonk",
+            "yeet",
+            "blush",
+            "smile",
+            "wave",
+            "highfive",
+            "handhold",
+            "nom",
+            "bite",
+            "glomp",
+            "slap",
+            "kill",
+            "kick",
+            "happy",
+            "wink",
+            "poke",
+            "dance",
+            "cringe",
+            "back",
+        ]
+        category_nsfw: list[str] = ["waifu", "neko", "trap", "blowjob", "back"]
         if not type in types:
             logging.error("Unknown type")
-            raise ValueError(f'Type not found {types}, given {type}')
-        if type == 'sfw' and category not in category_sfw and server == 0:
+            raise ValueError(f"Type not found {types}, given {type}")
+        if type == "sfw" and category not in category_sfw and server == 0:
             logging.error("Unknown category")
             if category in category_nsfw:
-                raise ValueError(f'Category not found, but found in type nsfw')
-            raise ValueError(
-                f'Category not found {category_sfw}, given {category}')
-        if type == 'nsfw' and category not in category_nsfw and server == 0:
-            logging.error('Unknown category')
+                raise ValueError(f"Category not found, but found in type nsfw")
+            raise ValueError(f"Category not found {category_sfw}, given {category}")
+        if type == "nsfw" and category not in category_nsfw and server == 0:
+            logging.error("Unknown category")
             if category in category_sfw:
-                raise ValueError(f'Category not found, but found in type sfw')
-            raise ValueError(
-                f'Category not found {category_nsfw}, given {category}')
+                raise ValueError(f"Category not found, but found in type sfw")
+            raise ValueError(f"Category not found {category_nsfw}, given {category}")
         if server == 0:
             try:
-                resp = requests.get(
-                    "https://api.waifu.pics/" + type + "/" + category)
+                resp = requests.get("https://api.waifu.pics/" + type + "/" + category)
             except requests.exceptions.ConnectionError:
                 logging.error("Connection error")
-                raise ConnectionError(
-                    'Make sure you have a connection established')
+                raise ConnectionError("Make sure you have a connection established")
             self.data: dict[str, str] = resp.json()
             self.res = requests.get(self.data["url"], stream=True)
         elif server == 1:
@@ -188,15 +254,16 @@ class fanart:
                 resp = requests.get("https://nekos.best/api/v2/neko")
             except requests.exceptions.ConnectionError:
                 logging.error("Connection error")
-                raise ConnectionError(
-                    'Make sure you have a connection established')
+                raise ConnectionError("Make sure you have a connection established")
             self.data: dict[str, str] = resp.json()
             self.res = requests.get(
-                self.data["results"][0]["url"], stream=True)  # type: ignore
-            if type != 'sfw' or category != 'waifu':
+                self.data["results"][0]["url"], stream=True
+            )  # type: ignore
+            if type != "sfw" or category != "waifu":
                 logging.warning("Type and category not supported on server 1")
                 self.error.append(
-                    f'type or category not supported on this server, given {server}')
+                    f"type or category not supported on this server, given {server}"
+                )
         else:
             raise ValueError(f"Server not found: {servers}, given {server}")
         if self.res.status_code == 200:
@@ -215,8 +282,8 @@ class fanart:
     def get_url(self):
         """
         The get_url function returns the URL of a given search result.
-        If there is no server specified, it will return the URL from the 
-        first search result in self.data[&quot;results&quot;]. If there is a server 
+        If there is no server specified, it will return the URL from the
+        first search result in self.data[&quot;results&quot;]. If there is a server
         specified, it will return the URL from that specific search result.
 
         :param self: Reference the object itself
@@ -239,11 +306,11 @@ class fanart:
         elif self.server == 1:
             return self.data
 
-    def download(self, filename: str = 'image.png', destination: str = '.\\'):
+    def download(self, filename: str = "image.png", destination: str = ".\\"):
         """
         The download function downloads the image from the url and saves it to a specified location.
-        The function takes two arguments, filename and destination. 
-        If no filename is given, then 'image.png' will be used as default value for the file name argument. 
+        The function takes two arguments, filename and destination.
+        If no filename is given, then 'image.png' will be used as default value for the file name argument.
         If no destination is given, then current working directory will be used as default value for the destination argument.
 
         :param self: Access variables that belongs to the class
@@ -253,25 +320,26 @@ class fanart:
         """
         if self.res.status_code == 200:
             if self.server == 0:
-                if self.data["url"].split('.')[-1] == 'gif':
+                if self.data["url"].split(".")[-1] == "gif":
                     logging.info("Downloading image as gif")
-                    filename = destination + \
-                        str(filename.split('.')[0:-1][0]) + '.gif'
-                    download(self.data['url'], filename)
+                    filename = destination + str(filename.split(".")[0:-1][0]) + ".gif"
+                    download(self.data["url"], filename)
                 else:
                     filename = destination + filename
-                    download(self.data['url'], filename)
+                    download(self.data["url"], filename)
             elif self.server == 1:
-                download(self.data["results"][0]["url"],  # type: ignore
-                         destination + filename)
+                download(
+                    self.data["results"][0]["url"],  # type: ignore
+                    destination + filename,
+                )
             else:
-                logging.error('Server not found')
-                raise ValueError('Server not found')
+                logging.error("Server not found")
+                raise ValueError("Server not found")
             self.filename = filename
             return self
         return self
 
-    def show(self, side: str = 'right'):
+    def show(self, side: str = "right"):
         """
         The show function is used to display the image. It takes a single argument, side, which defaults to right.
         The show function will open the image in Windows Photo Viewer and then play it in VLC media player.
@@ -280,46 +348,46 @@ class fanart:
         :param side: str: Specify which side of the screen to show the image on
         :return: The object itself
         """
-        if self.filename.split('.')[-1] == 'gif':
+        if self.filename.split(".")[-1] == "gif":
             if os.path.exists(self.filename):
                 final.pymp4.video(self.filename).g2v()
                 os.remove(self.filename)
-            if os.path.exists('.' + self.filename.split('.')[0:-1][1] + '.mp4'):
-                player = vlc.Instance('--input-repeat=999999')
+            if os.path.exists("." + self.filename.split(".")[0:-1][1] + ".mp4"):
+                player = vlc.Instance("--input-repeat=999999")
                 media_list = player.media_list_new()  # type: ignore
                 self.media_player = player.media_list_player_new()  # type: ignore
                 media = player.media_new(  # type: ignore
-                    '.' + self.filename.split('.')[0:-1][1] + '.mp4')
+                    "." + self.filename.split(".")[0:-1][1] + ".mp4"
+                )
                 media_list.add_media(media)
                 self.media_player.set_media_list(media_list)
                 player.vlm_set_loop("video", True)  # type: ignore
                 self.media_player.play()
                 sleep(0.4)
-                window = pygetwindow.getWindowsWithTitle(
-                    'VLC (Direct3D11 Output)')[0]
+                window = pygetwindow.getWindowsWithTitle("VLC (Direct3D11 Output)")[0]
                 window.activate()
-                pg.keyDown('win')
+                pg.keyDown("win")
                 pg.press(side)
-                pg.keyUp('win')
-                pg.press('esc')
+                pg.keyUp("win")
+                pg.press("esc")
                 sleep(0.25)
-                pg.keyDown('alt')
-                pg.press('tab')
-                pg.keyUp('alt')
+                pg.keyDown("alt")
+                pg.press("tab")
+                pg.keyUp("alt")
                 sleep(1)
             else:
-                logging.error('File not found')
+                logging.error("File not found")
         else:
             img = Image.open(self.filename)
             img.show()
-            pg.keyDown('win')
-            pg.press('right')
-            pg.keyUp('win')
-            pg.press('esc')
+            pg.keyDown("win")
+            pg.press("right")
+            pg.keyUp("win")
+            pg.press("esc")
             sleep(0.25)
-            pg.keyDown('alt')
-            pg.press('tab')
-            pg.keyUp('alt')
+            pg.keyDown("alt")
+            pg.press("tab")
+            pg.keyUp("alt")
         return self
 
     def hide(self, delete: bool = True):
@@ -329,23 +397,24 @@ class fanart:
         :param self: Access the class attributes
         :return: None
         """
-        if self.filename.split('.')[-1] == 'gif':
+        if self.filename.split(".")[-1] == "gif":
             self.media_player.stop()  # type: ignore
             sleep(0.1)
             if delete:
-                os.remove('.' + self.filename.split('.')[0:-1][1] + '.mp4')
+                os.remove("." + self.filename.split(".")[0:-1][1] + ".mp4")
         else:
-            pg.keyDown('alt')
-            pg.press('tab')
-            pg.keyUp('alt')
-            pg.keyDown('alt')
-            pg.press('f4')
-            pg.keyUp('alt')
+            pg.keyDown("alt")
+            pg.press("tab")
+            pg.keyUp("alt")
+            pg.keyDown("alt")
+            pg.press("f4")
+            pg.keyUp("alt")
             if delete:
                 os.remove(self.filename)
         return self
 
     def sleep(self, seconds: float):
         from time import sleep
+
         sleep(seconds)
         return self

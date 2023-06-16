@@ -3,18 +3,25 @@ import pstats
 from time import perf_counter, process_time
 
 
-def Profiler(target, args: list = (),kwargs={}, time_info: bool = False, output_file: bool = False, _return: str = "r") -> any:
+def Profiler(
+    target,
+    args: list = (),
+    kwargs={},
+    time_info: bool = False,
+    output_file: bool = False,
+    _return: str = "r",
+) -> any:
     """
     The Profiler function is a wrapper for the cProfile module.
     It allows you to profile your code and get information about it's performance.
     The Profiler function takes in 5 arguments: target, args, time_info and output_file.
-    target is the function that you want to profile (required). 
-    args are any arguments that need to be passed into target (optional). 
+    target is the function that you want to profile (required).
+    args are any arguments that need to be passed into target (optional).
     time_info will print out how long it took for the profiled code to run if set True (optional).
     output file will create a file named PROFILING.prof if set True (default False)
     Open this file with 'snakeviz PROFILING.prof' in CLI environment !!! Will overwrite if file exists
     _return: use 'r' to return respone, 't' to return time or 'a' to return tuple of respone and time
-    
+
     :param target: Specify the function you want to profile
     :param args: tuple: Pass arguments to the target function
     :param time_info: bool: Print the time it spend to process
@@ -29,13 +36,13 @@ def Profiler(target, args: list = (),kwargs={}, time_info: bool = False, output_
     stats = pstats.Stats(pr)
     stats.sort_stats(pstats.SortKey.TIME)
     if output_file:
-        stats.dump_stats(filename='PROFILING.prof')
-        print('Use \'snakeviz PROFILING.prof\' to open file')
+        stats.dump_stats(filename="PROFILING.prof")
+        print("Use 'snakeviz PROFILING.prof' to open file")
     if time_info:
         print(f"Time it spend to process: {str(_end - _start)}s")
-    if _return == 'r':
+    if _return == "r":
         return response
-    elif _return == 't':
+    elif _return == "t":
         return float(_end - _start)
-    elif _return == 'a':
+    elif _return == "a":
         return (response, float(_end - _start))
