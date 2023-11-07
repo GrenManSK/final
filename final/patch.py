@@ -50,10 +50,7 @@ class patch:
             f3.write(f"# {version}\n\n{patch}\n\n```diff\n")
         for file in glob.glob("patch-*.txt"):
             with open(file, "r", encoding="utf-8") as f:
-                if (fr := f.read()) == "":
-                    f.close()
-                    os.remove(file)
-                else:
+                if (fr := f.read()) != "":
                     name = file
                     with open(version, "a", encoding="utf-8") as f3:
                         if fr == "\n":
@@ -61,21 +58,29 @@ class patch:
                             os.remove(file)
                             continue
                         f3.write(
-                            name.replace("patch-temp#29", "").replace("#29", "/")[0:-4]
-                            + "\n"
-                            + fr
-                            + "\n"
+                            (
+                                (
+                                    (
+                                        name.replace("patch-temp#29", "").replace(
+                                            "#29", "/"
+                                        )[:-4]
+                                        + "\n"
+                                    )
+                                    + fr
+                                )
+                                + "\n"
+                            )
                         )
 
-                    f.close()
-                    os.remove(file)
+                f.close()
+                os.remove(file)
         with open(version, "a") as f3:
             f3.write("```\n")
         os.makedirs("patch_notes", exist_ok=True)
-        shutil.move(version, "patch_notes/" + version + ".md")
+        shutil.move(version, f"patch_notes/{version}.md")
 
     def get_patch(self, folder="temp"):
-        for filename in glob.glob(folder + "/*", recursive=True):
+        for filename in glob.glob(f"{folder}/*", recursive=True):
             if filename.startswith("patch_notes"):
                 continue
             if os.path.isdir(filename):
@@ -99,20 +104,20 @@ def readFileToText(filePath):
         return ""
 
 
-def one_file(origin, lastest, filename):
+def one_file(origin, latest, filename):
     dmp = dmp_module.diff_match_patch()
 
     originText = readFileToText(origin)
-    lastestText = readFileToText(lastest)
+    latestText = readFileToText(latest)
 
-    if lastestText == "File was removed":
+    if latestText == "File was removed":
         patchText = "- File was removed"
     else:
-        patch = dmp.patch_make(originText, lastestText)
+        patch = dmp.patch_make(originText, latestText)
         patchText = dmp.patch_toText(patch)
 
-    # floder = sys.argv[1]
-    folder = "patch-" + filename + ".txt"
+    # folder = sys.argv[1]
+    folder = f"patch-{filename}.txt"
 
     print(folder)
     patchFilePath = folder

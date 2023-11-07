@@ -103,7 +103,6 @@ class Channel:
         :param self: Access the attributes and methods of the class
         :param path: Specify the path of the sound file
         :return: None
-        :doc-author: Trelent
         """
         return mixer.Channel(self.channel).play(
             mixer.Sound(path), loops=self.loops, fade_ms=self.fade
@@ -114,7 +113,6 @@ class Channel:
         The pause function pauses the music playback.
         :param self: Access the attributes and methods of the class in python
         :return: None
-        :doc-author: Trelent
         """
         return mixer.Channel(self.channel).pause()
 

@@ -41,7 +41,7 @@ class c2s:
     def start(self) -> str:
         full = ""
         with open(self.code_file, "r") as code:
-            if self.string_file is not None or not self.string_file in [""]:
+            if self.string_file is not None or self.string_file not in [""]:
                 with open(self.string_file, "w") as file:
                     for i in tqdm(fr := code.readlines()):
                         oneline = c2s.to_str(i)

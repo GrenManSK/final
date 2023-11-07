@@ -20,9 +20,8 @@ class video:
 
         :param self: Represent the instance of the class
         :return: A video file
-        :doc-author: Trelent
         """
 
         clip = mp.VideoFileClip(self.filename)
-        clip.write_videofile("." + self.filename.split(".")[0:-1][1] + ".mp4")
+        clip.write_videofile("." + self.filename.split(".")[:-1][1] + ".mp4")
         clip.reader.close()  # type: ignore

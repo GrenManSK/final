@@ -11,7 +11,7 @@ def get_screensize():
     return screensize
 
 
-def move(window: str, x: int, y: int, width, length) -> None:  # type: ignore
+def move(window: str, x: int, y: int, width, length) -> None:    # type: ignore
     """
     The move function moves the specified window to a specified location.
     The move function takes four arguments:
@@ -29,16 +29,15 @@ def move(window: str, x: int, y: int, width, length) -> None:  # type: ignore
     appname: str = window
     xpos: int = x
     ypos: int = y
-    if width == None:
+    if width is None:
         width: int = int((screensize[0] / 10) * 9)
-    if length == None:
+    if length is None:
         length: int = int((screensize[1] / 10) * 9)
 
     def enumHandler(hwnd, lParam):  # type: ignore
-        if win32gui.IsWindowVisible(hwnd):  # type: ignore
-            if appname in win32gui.GetWindowText(hwnd):  # type: ignore
-                win32gui.MoveWindow(
-                    hwnd, xpos, ypos, width, length, True
-                )  # type: ignore
+        if win32gui.IsWindowVisible(hwnd) and appname in win32gui.GetWindowText(hwnd):
+            win32gui.MoveWindow(
+                hwnd, xpos, ypos, width, length, True
+            )  # type: ignore
 
     win32gui.EnumWindows(enumHandler, None)  # type: ignore

@@ -25,8 +25,6 @@ class SimpleCompleter(object):
                 self.matches = self.options[:]
                 logging.debug("(empty input) matches: %s", self.matches)
 
-        # Return the state'th item from the match list,
-        # if we have that many.
         try:
             response = self.matches[state]
         except IndexError:

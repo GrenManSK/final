@@ -1,3 +1,4 @@
+import contextlib
 import sys
 import os
 import shutil
@@ -7,7 +8,7 @@ import glob
 class download:
     def __init__(self, url: str):
         self.url = url
-        self.caller = os.getcwd() + "/" + self.url.split("/")[-1].split(".")[0]
+        self.caller = f"{os.getcwd()}/" + self.url.split("/")[-1].split(".")[0]
 
     def download(self, folder=""):
         """
@@ -41,10 +42,8 @@ class download:
         file_names = os.listdir(self.caller + "\\")
         for file_name in file_names:
             if file_name in ["README.md", "requirements.txt", "LICENSE", ".gitignore"]:
-                try:
+                with contextlib.suppress(FileNotFoundError):
                     os.remove(self.caller + "\\" + file_name)
-                except FileNotFoundError:
-                    pass
         return self
 
     def install(self):

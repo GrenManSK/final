@@ -1,5 +1,7 @@
 """Writing methods"""
 
+
+import contextlib
 from tqdm import tqdm
 import os
 from time import sleep
@@ -19,9 +21,8 @@ def log(msg: str, end: str = "\n") -> str:
     :param msg: The message to be logged
     :param end: The character that will be used to end the line, defaults to \n (optional)
     """
-    crashfile = open("crash_dump-" + datelog + ".txt", "a", encoding="utf-8")
-    crashfile.write(str(msg) + str(end))
-    crashfile.close()
+    with open(f"crash_dump-{datelog}.txt", "a", encoding="utf-8") as crashfile:
+        crashfile.write(str(msg) + str(end))
     return msg
 
 
@@ -115,9 +116,7 @@ class installing_carousel:
         alinst = False
         number = 0
         char = ["|", "/", "-", "\\"]
-        while True:
-            if os.path.isfile(f"INSTALL_DONE{self.id}"):
-                break
+        while not os.path.isfile(f"INSTALL_DONE{self.id}"):
             if os.path.isfile(f"INSTALL_ERROR{self.id}"):
                 error = True
                 break
@@ -126,15 +125,15 @@ class installing_carousel:
                 break
             if os.path.isfile(f"INSTALL_PAUSE{self.id}"):
                 if not self.bar:
-                    if not self.use_curses:
-                        print("                                            ", end="\r")
-                    else:
+                    if self.use_curses:
                         self.curses_obj.addstr(
                             self.curses_y,
                             self.curses_x,
                             "                                            ",
                         )
                         self.curses_obj.refresh()
+                    else:
+                        print("                                            ", end="\r")
                 if self.bar:
                     tqdm.write("                                            ")
                 os.remove(f"INSTALL_PAUSE{self.id}")
@@ -142,23 +141,23 @@ class installing_carousel:
                     sleep(0.1)
                 os.remove(f"INSTALL_UNPAUSE{self.id}")
             if not self.bar:
-                if not self.use_curses:
-                    print(
-                        f"{self.comment} {self.package} {char[number]}               ",
-                        end="\r",
-                    )
-                else:
+                if self.use_curses:
                     self.curses_obj.addstr(
                         self.curses_y,
                         self.curses_x,
                         f"{self.comment} {self.package} {char[number]}               ",
                     )
                     self.curses_obj.refresh()
+                else:
+                    print(
+                        f"{self.comment} {self.package} {char[number]}               ",
+                        end="\r",
+                    )
             if self.bar:
                 tqdm.write(
                     f"{self.comment} {self.package} {char[number]}               "
                 )
-            if not self.move_by_command or self._move != 0 and self.move_by_command:
+            if not self.move_by_command or self._move != 0:
                 number += 1
                 if self.move_by_command:
                     self._move -= 1
@@ -167,56 +166,50 @@ class installing_carousel:
             sleep(0.1)
         if error:
             if not self.bar:
-                if not self.use_curses:
-                    print(f"{self.comment} {self.package} ERROR             ")
-                else:
+                if self.use_curses:
                     self.curses_obj.addstr(
                         self.curses_y,
                         self.curses_x,
                         f"{self.comment} {self.package} ERROR             ",
                     )
                     self.curses_obj.refresh()
+                else:
+                    print(f"{self.comment} {self.package} ERROR             ")
             if self.bar:
                 tqdm.write(f"{self.comment} {self.package} ERROR             ")
         elif alinst:
             if not self.bar:
-                if not self.use_curses:
-                    print(
-                        f"{self.comment} {self.package} ALREADY INSTALLED             "
-                    )
-                else:
+                if self.use_curses:
                     self.curses_obj.addstr(
                         self.curses_y,
                         self.curses_x,
                         f"{self.comment} {self.package} ALREADY INSTALLED             ",
                     )
                     self.curses_obj.refresh()
+                else:
+                    print(
+                        f"{self.comment} {self.package} ALREADY INSTALLED             "
+                    )
             if self.bar:
                 tqdm.write(
                     f"{self.comment} {self.package} ALREADY INSTALLED             "
                 )
         else:
             if not self.bar:
-                if not self.use_curses:
-                    print(f"{self.comment} {self.package} DONE             ")
-                else:
+                if self.use_curses:
                     self.curses_obj.addstr(
                         self.curses_y,
                         self.curses_x,
                         f"{self.comment} {self.package} DONE             ",
                     )
                     self.curses_obj.refresh()
+                else:
+                    print(f"{self.comment} {self.package} DONE             ")
             if self.bar:
                 tqdm.write(f"{self.comment} {self.package} DONE             ")
-        try:
+        with contextlib.suppress(Exception):
             os.remove(f"INSTALL_DONE{self.id}")
-        except Exception:
-            pass
-        try:
+        with contextlib.suppress(Exception):
             os.remove(f"INSTALL_ERROR{self.id}")
-        except Exception:
-            pass
-        try:
+        with contextlib.suppress(Exception):
             os.remove(f"INSTALL_ALINST{self.id}")
-        except Exception:
-            pass

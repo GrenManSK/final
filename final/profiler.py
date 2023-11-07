@@ -6,7 +6,7 @@ from time import perf_counter, process_time
 def Profiler(
     target,
     args: list = (),
-    kwargs={},
+    kwargs=None,
     time_info: bool = False,
     output_file: bool = False,
     _return: str = "r",
@@ -20,7 +20,7 @@ def Profiler(
     time_info will print out how long it took for the profiled code to run if set True (optional).
     output file will create a file named PROFILING.prof if set True (default False)
     Open this file with 'snakeviz PROFILING.prof' in CLI environment !!! Will overwrite if file exists
-    _return: use 'r' to return respone, 't' to return time or 'a' to return tuple of respone and time
+    _return: use 'r' to return response, 't' to return time or 'a' to return tuple of response and time
 
     :param target: Specify the function you want to profile
     :param args: tuple: Pass arguments to the target function
@@ -29,6 +29,8 @@ def Profiler(
     :param _return: str: Determine what the function should return
     :return: A tuple: (response, time)
     """
+    if kwargs is None:
+        kwargs = {}
     with cProfile.Profile() as pr:
         _start = perf_counter()
         response = target(*args, **kwargs)
@@ -40,9 +42,9 @@ def Profiler(
         print("Use 'snakeviz PROFILING.prof' to open file")
     if time_info:
         print(f"Time it spend to process: {str(_end - _start)}s")
-    if _return == "r":
+    if _return == "a":
+        return (response, float(_end - _start))
+    elif _return == "r":
         return response
     elif _return == "t":
         return float(_end - _start)
-    elif _return == "a":
-        return (response, float(_end - _start))

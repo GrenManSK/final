@@ -35,15 +35,12 @@ class SQLServer:
 
         if self.log:
             print("CONNECTING ...", end="\r")
-        if self.user != None:
-            if not isinstance(self.user, str):
-                raise ValueError("user must be a string")
-        if self.passwd is not None:
-            if not isinstance(self.passwd, str):
-                raise ValueError("passwd must be a string")
-        if self.database is not None:
-            if not isinstance(self.database, str):
-                raise ValueError("database must be a string")
+        if self.user != None and not isinstance(self.user, str):
+            raise ValueError("user must be a string")
+        if self.passwd is not None and not isinstance(self.passwd, str):
+            raise ValueError("passwd must be a string")
+        if self.database is not None and not isinstance(self.database, str):
+            raise ValueError("database must be a string")
 
         self.db = mysql.connector.connect(
             host=self.host,
@@ -80,9 +77,8 @@ class SQLServer:
         except FileExistsError:
             SQLServer.execute(self, command=command, log=log, info=info)
             return None
-        if log != None:
-            if isinstance(log, bool):
-                self.log = log
+        if log != None and isinstance(log, bool):
+            self.log = log
         if self.log or info:
             print(f"Executing command {command}")
         start = time.time()
@@ -95,10 +91,9 @@ class SQLServer:
         commandtime = end - start
         start = time.time()
         data = self.mycursor.fetchall()
-        if self.log:
-            if data is not None:
-                for row in tqdm(iterable=data, total=len(data)):
-                    tqdm.write(str(row))
+        if self.log and data is not None:
+            for row in tqdm(iterable=data, total=len(data)):
+                tqdm.write(str(row))
         end = time.time()
         endtime = end - start
         if self.log or info:
@@ -121,7 +116,7 @@ class SQLServer:
         :return: A string that is formatted for the insert statement
         """
         name: str = ""
-        if thing == None:
+        if thing is None:
             return "NULL"
         if len(thing) == 0:
             name: str = "None"
@@ -141,12 +136,9 @@ class SQLServer:
                     else:
                         was_edited: bool = False
                         temp += str(thing[i][j])
-                if not was_edited:
-                    name += str(thing[i] + ", ")
-                elif was_edited:
-                    name += str(temp + ", ")
-            name: str = name[0:-2]
-        if mode == 1:
+                name += str(f"{temp}, ") if was_edited else str(f"{thing[i]}, ")
+            name: str = name[:-2]
+        elif mode == 1:
             temp: str = ""
             was_edited: bool = False
             for i in tqdm(range(len(thing)), leave=False):
@@ -159,8 +151,5 @@ class SQLServer:
                 else:
                     was_edited: bool = False
                     temp += str(thing[i])
-                if not was_edited:
-                    name += str(thing[i])
-                elif was_edited:
-                    name += str(temp)
+                name += str(temp) if was_edited else str(thing[i])
         return name

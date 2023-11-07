@@ -19,7 +19,7 @@ class rename:
         output_folder = []
         output_folder_names = []
         output_names = []
-        for item in (input_folder := glob.glob(self.input + "/*.*")):
+        for item in (input_folder := glob.glob(f"{self.input}/*.*")):
             anime_name = anitopy.parse(item.split("\\")[-1])["anime_title"]
             output_folder.append(item)
             output_folder_names.append(os.path.split(item)[-1])
@@ -30,9 +30,7 @@ class rename:
         print(folder_name)
         print(folder_name_parent)
         print(anime_name)
-        extensions = []
-        for item in input_folder:
-            extensions.append(anitopy.parse(item)["file_extension"])
+        extensions = [anitopy.parse(item)["file_extension"] for item in input_folder]
         resolution = []
         for item in input_folder:
             try:
@@ -56,22 +54,13 @@ class rename:
             output_names.append(
                 [anime_name, episode_name, f" (Season {season[times]})"]
             )
-        output_final = []
-        for times, item in enumerate(output_names):
-            output_final.append(
-                folder_name_parent
-                + "/"
-                + anime_name
-                + str(item[2])
-                + " - "
-                + str(item[1])
-                + anime_title[times]
-                + "."
-                + extensions[times]
-            )
+        output_final = [
+            f"{folder_name_parent}/{anime_name}{str(item[2])} - {str(item[1])}{anime_title[times]}.{extensions[times]}"
+            for times, item in enumerate(output_names)
+        ]
         print(output_final)
-        for number in range(0, len(output_final)):
-            print(input_folder[number] + " => " + output_final[number])
+        for number in range(len(output_final)):
+            print(f"{input_folder[number]} => {output_final[number]}")
         self.input = input_folder
         self.output = output_final
 
@@ -83,7 +72,7 @@ class rename:
         : param self: Access the attributes and methods of the class in python
         : return: None
         """
-        for number in range(0, len(self.output)):
+        for number in range(len(self.output)):
             os.rename(self.input[number], self.output[number])
 
 

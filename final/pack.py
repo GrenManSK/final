@@ -1,3 +1,4 @@
+import contextlib
 import os
 import shutil
 import subprocess
@@ -19,17 +20,16 @@ class FindError(Exception):
 
 
 class pack:
-    def __init__(self, filename, default_name: str = "data.xp2", uncoded=[], uncoded_folders=[], max_mbs: int = 0):  # type: ignore
+    def __init__(self, filename, default_name: str = "data.xp2", uncoded=None, uncoded_folders=None, max_mbs: int = 0):  # type: ignore
+        if uncoded is None:
+            uncoded = []
+        if uncoded_folders is None:
+            uncoded_folders = []
         self.filename = filename
         self.default_name = default_name
         self.uncoded = uncoded
         self.uncoded_folders = uncoded_folders
-        if max_mbs == 0:
-            self.max_mbs = 32768
-        else:
-            self.max_mbs = max_mbs
-        for file_name in os.listdir(filename + "/"):
-            pass
+        self.max_mbs = 32768 if max_mbs == 0 else max_mbs
 
     @staticmethod
     def download(url: str, fname: str, chunk_size: int = 1024) -> bool:
@@ -66,52 +66,7 @@ class pack:
 
     def pack(self, download=True):
         if download:
-            pack.download(
-                "https://github.com/awaken1ng/krkr-xp3/zipball/master",
-                name := "xp3.zip",
-            )
-            with zipfile.ZipFile(name, mode="r") as zip:
-                for member in tqdm(
-                    iterable=zip.namelist(),
-                    total=len(zip.namelist()),
-                    desc="Extracting ",
-                ):
-                    try:
-                        zip.extract(member)
-                        tqdm.write(
-                            f"{os.path.basename(member)}("
-                            + str(os.path.getsize(member))
-                            + "KB)"
-                        )
-                    except zipfile.error as e:
-                        pass
-            directory = None
-            for path, currentDirectory, files in os.walk(Path.cwd()):
-                for directory1 in currentDirectory:
-                    if directory1.startswith("awaken1ng-krkr-xp3-"):
-                        print(directory1)
-                        directory = directory1
-            os.remove("xp3.zip")
-            if directory == None:
-                raise FindError
-            sleep(0.5)
-            shutil.move(directory + "/xp3.py", "xp3.py")
-            shutil.move(directory + "/xp3reader.py", "xp3reader.py")
-            shutil.move(directory + "/xp3writer.py", "xp3writer.py")
-            os.mkdir("structs")
-            for i in glob.iglob(directory + "/*"):
-                try:
-                    shutil.copy2(i, "./")
-                except PermissionError:
-                    continue
-            for i in glob.iglob(directory + "/structs/*"):
-                try:
-                    shutil.copy2(i, "structs/")
-                except PermissionError:
-                    continue
-            for i in ["requirements.txt", "README.md", "tests.py"]:
-                os.remove(i)
-            shutil.rmtree(directory)
+            self.download_xp3(pack)
         cut = False
         if self.max_mbs == 0:
             pack.pack_one(self)
@@ -121,22 +76,63 @@ class pack:
                 if not breaked:
                     break
         if download:
-            sleep(1)
-            os.remove("xp3.py")
-            os.remove("xp3reader.py")
-            os.remove("xp3writer.py")
-            shutil.rmtree("structs")
-            if isinstance(self.filename, str):
-                try:
-                    shutil.rmtree(self.filename)
-                except FileNotFoundError:
-                    pass
-            elif isinstance(self.filename, list):
-                for i in range(len(self.filename)):
-                    try:
-                        shutil.rmtree(self.filename[i])
-                    except FileNotFoundError:
-                        pass
+            self.remove_xp3()
+
+    def remove_xp3(self):
+        sleep(1)
+        os.remove("xp3.py")
+        os.remove("xp3reader.py")
+        os.remove("xp3writer.py")
+        shutil.rmtree("structs")
+        if isinstance(self.filename, str):
+            with contextlib.suppress(FileNotFoundError):
+                shutil.rmtree(self.filename)
+        elif isinstance(self.filename, list):
+            for i in range(len(self.filename)):
+                with contextlib.suppress(FileNotFoundError):
+                    shutil.rmtree(self.filename[i])
+
+    def download_xp3(self, pack):
+        pack.download(
+            "https://github.com/awaken1ng/krkr-xp3/zipball/master",
+            name := "xp3.zip",
+        )
+        with zipfile.ZipFile(name, mode="r") as zip:
+            for member in tqdm(
+                    iterable=zip.namelist(),
+                    total=len(zip.namelist()),
+                    desc="Extracting ",
+                ):
+                with contextlib.suppress(zipfile.error):
+                    zip.extract(member)
+                    tqdm.write(f"{os.path.basename(member)}({str(os.path.getsize(member))}KB)")
+        directory = None
+        for path, currentDirectory, files in os.walk(Path.cwd()):
+            for directory1 in currentDirectory:
+                if directory1.startswith("awaken1ng-krkr-xp3-"):
+                    print(directory1)
+                    directory = directory1
+        os.remove("xp3.zip")
+        if directory is None:
+            raise FindError
+        sleep(0.5)
+        shutil.move(f"{directory}/xp3.py", "xp3.py")
+        shutil.move(f"{directory}/xp3reader.py", "xp3reader.py")
+        shutil.move(f"{directory}/xp3writer.py", "xp3writer.py")
+        os.mkdir("structs")
+        for i in glob.iglob(f"{directory}/*"):
+            try:
+                shutil.copy2(i, "./")
+            except PermissionError:
+                continue
+        for i in glob.iglob(f"{directory}/structs/*"):
+            try:
+                shutil.copy2(i, "structs/")
+            except PermissionError:
+                continue
+        for i in ["requirements.txt", "README.md", "tests.py"]:
+            os.remove(i)
+        shutil.rmtree(directory)
 
     def pack_one(self):
         global datapart
@@ -250,7 +246,7 @@ class pack:
                     os.path.join(source_dir, file_name), "datafolder/" + source_dir
                 )
         elif isinstance(self.filename, list):
-            for i in range(0, len(self.filename)):
+            for i in range(len(self.filename)):
                 source_dir = self.filename[i] + "/"
                 os.mkdir("datafolder/" + source_dir)
                 for file_name in os.listdir(source_dir):
@@ -296,7 +292,7 @@ class pack:
             zipfiles = ["data.xp3"]
             zipfileswopath = ["data.xp3"]
             folders = []
-            for i in range(0, len(folders)):
+            for i in range(len(folders)):
                 for path, directories, files in os.walk(folders[i]):
                     for file in files:
                         file_name = os.path.join(path, file)
@@ -305,7 +301,7 @@ class pack:
         with zipfile.ZipFile(cachename, mode="w", compresslevel=5) as zip:
             zip_kb_old = 0
             zipfilesnumber = len(zipfiles)
-            bar = tqdm(range(0, len(zipfiles)), desc="Packing ")
+            bar = tqdm(range(len(zipfiles)), desc="Packing ")
             for i in bar:
                 zip.write(zipfiles[i])
                 filesize = sum([zinfo.file_size for zinfo in zip.filelist])

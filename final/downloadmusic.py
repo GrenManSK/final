@@ -20,9 +20,9 @@ def DownloadMusic(music_name, directory):
     """
     query_string = urllib.parse.urlencode({"search_query": music_name})
     formatUrl = urllib.request.urlopen(
-        "https://www.youtube.com/results?" + query_string
+        f"https://www.youtube.com/results?{query_string}"
     )
-    logging.debug("Searched in: https://www.youtube.com/results?" + query_string)
+    logging.debug(f"Searched in: https://www.youtube.com/results?{query_string}")
     search_results = re.findall(r"watch\?v=(\S{11})", formatUrl.read().decode())
     clip = requests.get(
         "https://www.youtube.com/watch?v=" + "{}".format(search_results[0])
@@ -55,7 +55,7 @@ def DownloadMusic(music_name, directory):
         base.replace("]", ")")
         base.replace("'", "")
         base.replace('"', "")
-        new_file = base + ".mp3"
+        new_file = f"{base}.mp3"
         print(os.path.join(out_file))
         print(os.path.join(directory + "\\" + new_file))
         video = VideoFileClip(os.path.join(out_file))

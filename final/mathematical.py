@@ -5,19 +5,11 @@ from random import randint
 
 
 class list:
-    def __init__(
-        self,
-        item: list,
-        show: bool = False,
-        ignore_errors: bool = False,
-        obj_ret: bool = False,
-        error: list = [],
-    ):
-        if isinstance(item, list):
-            if ignore_errors:
-                pass
-            else:
-                raise ValueError("item must be a list")
+    def __init__(self, item: list, show: bool = False, ignore_errors: bool = False, obj_ret: bool = False, error: list = None):
+        if error is None:
+            error = []
+        if isinstance(item, list) and not ignore_errors:
+            raise ValueError("item must be a list")
         self.error = error
         self.item = item
         self.show = show
@@ -53,9 +45,7 @@ class list:
         if self.show:
             print(ratio)
         self.item = ratio
-        if self.obj_ret:
-            return self
-        return ratio
+        return self if self.obj_ret else ratio
 
     def divide(self):
         """
@@ -84,24 +74,18 @@ class list:
                 self.error.append("No object found; ignoring")
             else:
                 raise ValueError("No object found")
-            if self.show:
-                print(0)
-            if self.obj_ret:
-                return self
-            return 0
+            return self.idk(0)
         result = self.item[0]
         for i in range(1, len(self.item)):
             result = result / self.item[i]
         self.item = result
+        return self.idk(result)
+
+    def idk(self, arg0):
         if self.show:
-            print(result)
-        if self.obj_ret:
-            return self
-        return result
+            print(arg0)
+        return self if self.obj_ret else arg0
 
 
 def get_id(long: int = 10) -> int:
-    id = ""
-    for i in range(long):
-        id += str(randint(0, 9))
-    return id
+    return "".join(str(randint(0, 9)) for _ in range(long))
