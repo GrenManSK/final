@@ -33,6 +33,8 @@ class c2s:
                 temp += '\\"'
             elif thing[i] == "\n":
                 temp += "\\n"
+            elif thing[i] == "\\":
+                temp += "\\\\"
             else:
                 temp += str(thing[i])
         name += str(temp)
